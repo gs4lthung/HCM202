@@ -1,0 +1,156 @@
+.lesson-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .lesson-container {
+    max-width: 1000px;
+  }
+}
+
+.lesson-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.lesson-title {
+  color: #d32f2f;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  line-height: 1.3;
+}
+
+.lesson-summary {
+  background: linear-gradient(135deg, #fff8e1, #fffde7);
+  padding: 2rem;
+  border-radius: 10px;
+  border-left: 5px solid #ffc107;
+}
+
+.summary-paragraph {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.summary-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.lesson-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.lesson-image {
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.lesson-image:hover {
+  transform: scale(1.05);
+}
+
+.image-caption {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #666;
+}
+
+.lesson-content-detail {
+  background: #fafafa;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 3rem 0;
+}
+
+.lesson-content-detail h2 {
+  color: #d32f2f;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #d32f2f;
+  padding-bottom: 0.5rem;
+}
+
+.lesson-content-detail h2:first-child {
+  margin-top: 0;
+}
+
+.lesson-content-detail p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.lesson-content-detail ul {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.lesson-content-detail li {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.lesson-footer {
+  background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 3rem;
+}
+
+.study-tip {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 0;
+  color: #2e7d32;
+}
+
+@media (max-width: 768px) {
+  .lesson-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .lesson-title {
+    font-size: 2rem;
+  }
+  
+  .lesson-images {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .lesson-content-detail {
+    padding: 1.5rem;
+  }
+  
+  .lesson-content-detail h2 {
+    font-size: 1.5rem;
+  }
+}
