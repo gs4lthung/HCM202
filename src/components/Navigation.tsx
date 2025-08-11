@@ -49,7 +49,7 @@ const Navigation: React.FC = () => {
               className={location.pathname === '/quiz' ? 'nav-link active' : 'nav-link'}
               onClick={closeMobileMenu}
             >
-              Kiểm Tra
+              Kiểm Tra & Thách Thức
             </Link>
           </li>
           <li>

@@ -14,6 +14,8 @@ export interface QuizResult {
   timeTaken: number; // thời gian thực tế làm bài (giây)
   quizDuration: number; // tổng thời gian cho phép (giây)
   timestamp: Date;
+  quizType?: string; // 'standard', 'ai-easy', 'ai-medium', 'ai-hard'
+  difficulty?: string; // for AI quizzes
 }
 
 export interface ChatMessage {

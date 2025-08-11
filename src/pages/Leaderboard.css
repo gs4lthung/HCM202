@@ -33,6 +33,34 @@
   margin-bottom: 2rem;
 }
 
+.tab-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.tab-button {
+  padding: 0.8rem 1.5rem;
+  border: 2px solid #d32f2f;
+  background: white;
+  color: #d32f2f;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  background: rgba(211, 47, 47, 0.1);
+}
+
+.tab-button.active {
+  background: #d32f2f;
+  color: white;
+}
+
 .refresh-button {
   background: linear-gradient(135deg, #1976d2, #2196f3);
   color: white;
@@ -155,7 +183,6 @@
   opacity: 0.7;
   margin-top: 0.5rem;
 }
-
 /* Bảng xếp hạng */
 .leaderboard-table {
   background: white;
@@ -342,5 +369,221 @@
   .leaderboard-stats {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+}
+
+.leaderboard-item.rank-bronze {
+  border-color: #CD7F32;
+  background: linear-gradient(135deg, rgba(205, 127, 50, 0.1), rgba(255, 255, 255, 0.95));
+}
+
+.rank {
+  width: 60px;
+  text-align: center;
+  margin-right: 1.5rem;
+}
+
+.rank-icon {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.player-info {
+  flex: 1;
+}
+
+.player-name {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.player-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.score {
+  font-weight: bold;
+  color: #4CAF50;
+  font-size: 1.1rem;
+}
+
+.difficulty {
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.time, .date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.progress-container {
+  width: 100px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-left: 1rem;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  border-radius: 5px;
+  transition: width 0.8s ease;
+}
+
+.progress-bar.ai-progress {
+  background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+}
+
+.no-results {
+  text-align: center;
+  color: #666;
+  padding: 4rem 2rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 2px dashed #ddd;
+}
+
+.no-results p {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: #666;
+  padding: 2rem;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f0f0f0;
+  border-top: 4px solid #d32f2f;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-container {
+  text-align: center;
+  color: #d32f2f;
+  padding: 4rem 2rem;
+  background: #ffebee;
+  border-radius: 10px;
+  border: 2px solid #ffcdd2;
+}
+
+.error-message {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.retry-button {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.retry-button:hover {
+  background: #b71c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+}
+
+.retry-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.leaderboard-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.refresh-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f8f9fa;
+  color: #666;
+  border: 2px solid #ddd;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+}
+
+.refresh-button:hover {
+  background: white;
+  color: #d32f2f;
+  border-color: #d32f2f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(211, 47, 47, 0.2);
+}
+
+@media (max-width: 768px) {
+  .leaderboard-container {
+    padding: 1rem;
+  }
+
+  .leaderboard-header h1 {
+    font-size: 2rem;
+  }
+
+  .tab-navigation {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tab-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .leaderboard-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .rank {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .player-details {
+    align-items: center;
+  }
+
+  .progress-container {
+    margin: 1rem 0 0 0;
+    width: 100%;
   }
 }

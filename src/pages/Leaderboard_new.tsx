@@ -4,92 +4,50 @@ import { db } from '../firebase';
 import type { QuizResult } from '../types';
 import './Leaderboard.css';
 
-interface AIQuizResult {
-  id: string;
-  score: number;
-  totalQuestions: number;
-  timeSpent: number;
-  difficulty: 'easy' | 'medium' | 'hard';
-  timestamp: Date;
-  quizTitle: string;
-  playerName: string;
-}
-
 const Leaderboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'normal' | 'ai'>('normal');
-  const [normalLeaderboard, setNormalLeaderboard] = useState<QuizResult[]>([]);
-  const [aiLeaderboard, setAILeaderboard] = useState<AIQuizResult[]>([]);
+  const [leaderboard, setLeaderboard] = useState<QuizResult[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchLeaderboards();
+    fetchLeaderboard();
   }, []);
 
-  const fetchLeaderboards = async () => {
+  const fetchLeaderboard = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      // Fetch normal quiz results
-      const normalQuery = query(collection(db, 'quizResults'));
-      const normalSnapshot = await getDocs(normalQuery);
+      // Lấy tất cả kết quả từ Firestore
+      const q = query(collection(db, 'quizResults'));
+      const querySnapshot = await getDocs(q);
       
-      const normalResults: QuizResult[] = [];
-      normalSnapshot.forEach((doc) => {
+      const results: QuizResult[] = [];
+      querySnapshot.forEach((doc) => {
         const data = doc.data();
-        normalResults.push({
+        results.push({
           id: doc.id,
           username: data.username,
           score: data.score,
           totalQuestions: data.totalQuestions,
           timeTaken: data.timeTaken,
           quizDuration: data.quizDuration,
-          timestamp: data.timestamp.toDate(),
-          quizType: data.quizType || 'standard',
-          difficulty: data.difficulty
-        });
-      });
-
-      // Sort normal results
-      const sortedNormal = normalResults.sort((a, b) => {
-        if (a.score !== b.score) {
-          return b.score - a.score;
-        }
-        return a.timeTaken - b.timeTaken;
-      });
-
-      // Fetch AI quiz results
-      const aiQuery = query(collection(db, 'aiQuizResults'));
-      const aiSnapshot = await getDocs(aiQuery);
-      
-      const aiResults: AIQuizResult[] = [];
-      aiSnapshot.forEach((doc) => {
-        const data = doc.data();
-        aiResults.push({
-          id: doc.id,
-          playerName: data.username || data.playerName, // Support both field names
-          score: data.score,
-          totalQuestions: data.totalQuestions,
-          timeSpent: data.timeTaken || data.timeSpent, // Support both field names
-          difficulty: data.difficulty,
-          quizTitle: data.quizTitle || `AI Quiz - ${data.difficulty}`,
           timestamp: data.timestamp.toDate()
         });
       });
 
-      // Sort AI results by score, then by time
-      const sortedAI = aiResults.sort((a, b) => {
+      // Sắp xếp theo điểm số giảm dần, nếu điểm bằng nhau thì ưu tiên thời gian ngắn hơn
+      const sortedResults = results.sort((a, b) => {
         if (a.score !== b.score) {
-          return b.score - a.score;
+          return b.score - a.score; // Điểm cao hơn đứng trước
         }
-        return a.timeSpent - b.timeSpent;
+        return a.timeTaken - b.timeTaken; // Thời gian ngắn hơn đứng trước
       });
 
-      setNormalLeaderboard(sortedNormal.slice(0, 10));
-      setAILeaderboard(sortedAI.slice(0, 10));
+      // Chỉ lấy top 10
+      setLeaderboard(sortedResults.slice(0, 10));
     } catch (err) {
-      console.error('Error loading leaderboards:', err);
+      console.error('Lỗi khi tải bảng xếp hạng:', err);
       setError('Không thể tải bảng xếp hạng. Vui lòng thử lại sau.');
     } finally {
       setLoading(false);
@@ -134,10 +92,6 @@ const Leaderboard: React.FC = () => {
     }
   };
 
-  const getCurrentLeaderboard = () => {
-    return activeTab === 'normal' ? normalLeaderboard : aiLeaderboard;
-  };
-
   if (loading) {
     return (
       <div className="leaderboard-container">
@@ -155,7 +109,7 @@ const Leaderboard: React.FC = () => {
         <div className="error">
           <h2>Có lỗi xảy ra</h2>
           <p>{error}</p>
-          <button className="retry-button" onClick={fetchLeaderboards}>
+          <button className="retry-button" onClick={fetchLeaderboard}>
             Thử Lại
           </button>
         </div>
@@ -170,28 +124,12 @@ const Leaderboard: React.FC = () => {
         <p className="leaderboard-description">
           Top 10 học viên xuất sắc nhất trong các bài kiểm tra
         </p>
-        
-        <div className="tab-navigation">
-          <button 
-            className={`tab-button ${activeTab === 'normal' ? 'active' : ''}`}
-            onClick={() => setActiveTab('normal')}
-          >
-            Quiz Thường
-          </button>
-          <button 
-            className={`tab-button ${activeTab === 'ai' ? 'active' : ''}`}
-            onClick={() => setActiveTab('ai')}
-          >
-            AI Quiz
-          </button>
-        </div>
-        
-        <button className="refresh-button" onClick={fetchLeaderboards}>
+        <button className="refresh-button" onClick={fetchLeaderboard}>
           🔄 Làm Mới
         </button>
       </div>
 
-      {getCurrentLeaderboard().length === 0 ? (
+      {leaderboard.length === 0 ? (
         <div className="empty-leaderboard">
           <h3>Chưa có kết quả nào</h3>
           <p>Hãy là người đầu tiên hoàn thành bài kiểm tra!</p>
@@ -200,11 +138,11 @@ const Leaderboard: React.FC = () => {
         <div className="leaderboard-content">
           {/* Top 3 Podium */}
           <div className="podium">
-            {getCurrentLeaderboard().slice(0, 3).map((result: QuizResult | AIQuizResult, index: number) => (
+            {leaderboard.slice(0, 3).map((result, index) => (
               <div key={result.id} className={`podium-item ${getRankClass(index + 1)}`}>
                 <div className="podium-rank">{getRankIcon(index + 1)}</div>
                 <div className="podium-user">
-                  <h3>{'username' in result ? result.username : result.playerName}</h3>
+                  <h3>{result.username}</h3>
                   <div className="podium-score">
                     {result.score}/{result.totalQuestions}
                   </div>
@@ -212,7 +150,7 @@ const Leaderboard: React.FC = () => {
                     {getPercentage(result.score, result.totalQuestions)}%
                   </div>
                   <div className="podium-time">
-                    ⏱️ {'timeTaken' in result ? formatTime(result.timeTaken) : 'N/A'}
+                    ⏱️ {formatTime(result.timeTaken)}
                   </div>
                 </div>
               </div>
@@ -233,7 +171,7 @@ const Leaderboard: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {getCurrentLeaderboard().map((result: QuizResult | AIQuizResult, index: number) => (
+                {leaderboard.map((result, index) => (
                   <tr key={result.id} className={getRankClass(index + 1)}>
                     <td className="rank-cell">
                       <span className="rank-display">
@@ -241,7 +179,7 @@ const Leaderboard: React.FC = () => {
                       </span>
                     </td>
                     <td className="name-cell">
-                      <strong>{'username' in result ? result.username : result.playerName}</strong>
+                      <strong>{result.username}</strong>
                     </td>
                     <td className="score-cell">
                       <span className="score-display">
@@ -260,7 +198,7 @@ const Leaderboard: React.FC = () => {
                       </div>
                     </td>
                     <td className="time-cell">
-                      ⏱️ {'timeTaken' in result ? formatTime(result.timeTaken) : 'N/A'}
+                      ⏱️ {formatTime(result.timeTaken)}
                     </td>
                     <td className="date-cell">
                       {formatDate(result.timestamp)}
@@ -274,13 +212,13 @@ const Leaderboard: React.FC = () => {
           <div className="leaderboard-stats">
             <div className="stat-item">
               <h4>Tổng số bài làm</h4>
-              <span>{getCurrentLeaderboard().length}</span>
+              <span>{leaderboard.length}</span>
             </div>
             <div className="stat-item">
               <h4>Điểm trung bình</h4>
               <span>
-                {getCurrentLeaderboard().length > 0 
-                  ? Math.round(getCurrentLeaderboard().reduce((sum: number, result: QuizResult | AIQuizResult) => sum + result.score, 0) / getCurrentLeaderboard().length * 10) / 10
+                {leaderboard.length > 0 
+                  ? Math.round(leaderboard.reduce((sum, result) => sum + result.score, 0) / leaderboard.length * 10) / 10
                   : 0
                 } điểm
               </span>
@@ -288,8 +226,8 @@ const Leaderboard: React.FC = () => {
             <div className="stat-item">
               <h4>Thời gian trung bình</h4>
               <span>
-                {activeTab === 'normal' && getCurrentLeaderboard().length > 0
-                  ? formatTime(Math.round((getCurrentLeaderboard() as QuizResult[]).reduce((sum: number, result: QuizResult) => sum + result.timeTaken, 0) / getCurrentLeaderboard().length))
+                {leaderboard.length > 0 
+                  ? formatTime(Math.round(leaderboard.reduce((sum, result) => sum + result.timeTaken, 0) / leaderboard.length))
                   : '0:00'
                 }
               </span>

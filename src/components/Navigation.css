@@ -48,6 +48,28 @@
   transform: translateY(-2px);
 }
 
+.nav-link.ai-challenge {
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+  border: 1px solid rgba(255,255,255,0.3);
+  animation: glow 2s ease-in-out infinite alternate;
+  font-weight: 600;
+}
+
+.nav-link.ai-challenge:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2));
+  box-shadow: 0 0 15px rgba(255,255,255,0.3);
+  transform: translateY(-3px);
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(255,255,255,0.2);
+  }
+  to {
+    box-shadow: 0 0 10px rgba(255,255,255,0.4);
+  }
+}
+
 .nav-link.active {
   background-color: rgba(255, 255, 255, 0.3);
   font-weight: bold;
