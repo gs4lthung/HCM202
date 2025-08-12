@@ -1,6 +1,6 @@
 .lesson-container {
   padding: 2rem;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   background: white;
   border-radius: 10px;
@@ -9,23 +9,84 @@
 }
 
 .lesson-title {
-  color: #d32f2f;
+  color: #e04949;
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 2rem;
   font-weight: bold;
 }
 
+.hero-section {
+  background: white;
+  padding: 3rem 0;
+}
+
+.hero-content {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.lesson-card {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-left: 5px solid;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background: #fff;
+  margin-left: 20px;
+}
+
+.item-content {
+  margin-top: 6px;
+  padding: 8px;
+  background: #f9f9f9;
+  border-left: 3px solid;
+  border-right: 3px solid;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.border-red {
+  border-color: #f87171;
+}
+.border-yellow {
+  border-color: #facc15;
+}
+.border-green {
+  border-color: #4ade80;
+}
+
+.text-red {
+  color: #dc2626;
+}
+.text-yellow {
+  color: #ca8a04;
+}
+.text-green {
+  color: #15803d;
+}
+
+.card-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+.card-li {
+  margin-left: 50px;
+  font-size: 20px;
+}
+
 .lesson-summary {
-  margin-bottom: 3rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .summary-paragraph {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1rem;
-  color: #555;
+  font-size: 1.25rem;
+  color: #6b7280;
+  line-height: 1.75;
+  text-align: justify;
 }
 
 .summary-paragraph:last-child {
@@ -79,6 +140,75 @@
   border-top: 4px solid #2196f3;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.carousel-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.image-caption {
+  font-size: 14px;
+  margin-top: 5px;
+  color: #555;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+.carousel-dots {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.dot {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  margin: 0 4px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #333;
 }
 
 @keyframes spin {

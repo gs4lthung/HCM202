@@ -19,6 +19,21 @@
   position: relative;
   width: 100%;
 }
+.icon-container {
+  width: 4rem;               
+  height: 4rem;        
+  background-color: #facc15; 
+  border-radius: 50%;        
+  display: flex;
+  align-items: center;       
+  justify-content: center;   
+}
+
+.book-icon {
+  width: 2rem;               
+  height: 2rem;              
+  color: #dc2626;          
+}
 
 .nav-title {
   font-size: 1.8rem;
@@ -46,6 +61,7 @@
 .nav-link:hover {
   background-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
+  color: yellow;
 }
 
 .nav-link.ai-challenge {
