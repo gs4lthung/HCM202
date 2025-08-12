@@ -2,6 +2,26 @@ import React, { useEffect, useState } from "react";
 import { lessonData } from "../data/lessonData";
 import "./LessonIntroduction.css";
 
+// Helper function to recursively render content
+function renderContent(content: any, key: any) {
+  if (typeof content === "string") {
+    return <p key={key}>{content}</p>;
+  } else if (
+    typeof content === "object" &&
+    content !== null &&
+    "title" in content &&
+    Array.isArray(content.content)
+  ) {
+    return (
+      <div key={key}>
+        <strong>{content.title}</strong>
+        {content.content.map((sub: any, subIdx: any) => renderContent(sub, subIdx))}
+      </div>
+    );
+  }
+  return null;
+}
+
 const LessonIntroduction: React.FC = () => {
   const [openItem, setOpenItem] = useState<{
     cardIndex: number;
@@ -116,9 +136,7 @@ const LessonIntroduction: React.FC = () => {
                       {openItem?.cardIndex === cardIndex &&
                         openItem?.itemIndex === itemIndex && (
                           <div className={`item-content border-${card.color}`}>
-                            {item.content.map((line, idx) => (
-                              <p key={idx}> {line}</p>
-                            ))}
+                            {item.content.map((line, idx) => renderContent(line, idx))}
                           </div>
                         )}
                     </li>
