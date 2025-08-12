@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { quizQuestions } from '../data/quizQuestions';
-import { generateAIQuiz, type AIQuizData } from '../utils/geminiService';
+import { generateAIQuiz } from '../utils/geminiService';
 import type { QuizResult } from '../types';
 import './Quiz.css';
 
@@ -26,7 +26,6 @@ interface Question {
 const Quiz: React.FC = () => {
   const [quizMode, setQuizMode] = useState<QuizMode>('standard');
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
-  const [aiQuizData, setAiQuizData] = useState<AIQuizData | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [currentQuestions, setCurrentQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -94,7 +93,6 @@ const Quiz: React.FC = () => {
     } else if (quizMode === 'ai') {
       // Reset questions for AI mode
       setCurrentQuestions([]);
-      setAiQuizData(null);
     }
     // Update time when mode changes (only if not started)
     if (!isStarted) {
@@ -108,7 +106,6 @@ const Quiz: React.FC = () => {
       console.log('Generating AI quiz with difficulty:', difficulty); // Debug log
       const data = await generateAIQuiz(difficulty);
       console.log('AI quiz data received:', data); // Debug log
-      setAiQuizData(data);
       const aiQuestions = data.questions.map(q => ({
         question: q.question,
         options: q.options,
@@ -217,7 +214,6 @@ const Quiz: React.FC = () => {
     setStartTime(0);
     setQuizMode('standard');
     setDifficulty('medium');
-    setAiQuizData(null);
     setCurrentQuestions([]);
     setIsGenerating(false);
   };
