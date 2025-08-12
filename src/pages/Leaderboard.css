@@ -161,13 +161,18 @@
 .leaderboard-table table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  box-sizing: border-box;
 }
 
 .leaderboard-table th {
   background: var(--background-color);
   color: var(--secondary-color);
-  padding: 1rem 1.5rem;
-  text-align: left;
+  padding: 1.2rem 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.8rem;
@@ -175,12 +180,26 @@
   border-bottom: 2px solid var(--border-color);
 }
 
+.leaderboard-table th:nth-child(1) { width: 80px; text-align: center; } /* Hạng */
+.leaderboard-table th:nth-child(2) { width: 200px; text-align: left; } /* Tên */
+.leaderboard-table th:nth-child(3) { width: 100px; text-align: center; } /* Điểm */
+.leaderboard-table th:nth-child(4) { width: 150px; text-align: center; } /* Tỷ lệ */
+.leaderboard-table th:nth-child(5) { width: 120px; text-align: center; } /* Thời gian */
+.leaderboard-table th:nth-child(6) { width: auto; text-align: center; } /* Ngày làm bài */
+
 .leaderboard-table td {
   padding: 1.2rem 1.5rem;
   border-bottom: 1px solid var(--border-color);
   vertical-align: middle;
   font-weight: 500;
 }
+
+.leaderboard-table td:nth-child(1) { width: 80px; } /* Hạng */
+.leaderboard-table td:nth-child(2) { width: 200px; } /* Tên */
+.leaderboard-table td:nth-child(3) { width: 100px; } /* Điểm */
+.leaderboard-table td:nth-child(4) { width: 150px; } /* Tỷ lệ */
+.leaderboard-table td:nth-child(5) { width: 120px; } /* Thời gian */
+.leaderboard-table td:nth-child(6) { width: auto; } /* Ngày làm bài */
 
 .leaderboard-table tr:last-child td {
   border-bottom: none;
@@ -191,7 +210,7 @@
 }
 
 .rank-cell {
-  text-align: center;
+  text-align: center !important;
   font-weight: 700;
   font-size: 1.2rem;
   color: var(--secondary-color);
@@ -201,10 +220,11 @@
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--secondary-color);
+  text-align: left !important;
 }
 
 .score-cell {
-  text-align: center;
+  text-align: center !important;
   font-weight: 700;
   font-size: 1.2rem;
   color: var(--success-color);
@@ -212,6 +232,8 @@
 
 .percentage-cell {
   width: 150px;
+  padding: 1.2rem 1rem !important;
+  text-align: center !important;
 }
 
 .percentage-bar {
@@ -219,6 +241,8 @@
   height: 10px;
   border-radius: 5px;
   overflow: hidden;
+  position: relative;
+  margin-bottom: 4px;
 }
 
 .percentage-fill {
@@ -228,10 +252,16 @@
   transition: width 0.5s ease;
 }
 
+.percentage-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
 .time-cell, .date-cell {
   font-size: 0.9rem;
   color: var(--text-color);
-  text-align: right;
+  text-align: center !important;
 }
 
 /* --- Stats --- */
@@ -284,8 +314,22 @@
   .podium-item.rank-silver { order: 2; }
   .podium-item.rank-bronze { order: 3; }
   .leaderboard-table {
-    display: block;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .leaderboard-table table {
+    min-width: 700px;
+  }
+  
+  /* Ensure thead and tbody stay aligned */
+  .leaderboard-table thead,
+  .leaderboard-table tbody {
+    display: table-header-group;
+  }
+  
+  .leaderboard-table tbody {
+    display: table-row-group;
   }
 }
 .empty-leaderboard {

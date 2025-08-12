@@ -213,7 +213,11 @@ const Leaderboard: React.FC = () => {
                     {getPercentage(result.score, result.totalQuestions)}%
                   </div>
                   <div className="podium-time">
-                    ⏱️ {'timeTaken' in result ? formatTime(result.timeTaken) : 'N/A'}
+                    ⏱️ {activeTab === 'normal' && 'timeTaken' in result 
+                         ? formatTime(result.timeTaken) 
+                         : activeTab === 'ai' && 'timeSpent' in result 
+                         ? formatTime(result.timeSpent)
+                         : 'N/A'}
                   </div>
                 </div>
               </div>
@@ -261,7 +265,11 @@ const Leaderboard: React.FC = () => {
                       </div>
                     </td>
                     <td className="time-cell">
-                      ⏱️ {'timeTaken' in result ? formatTime(result.timeTaken) : 'N/A'}
+                      ⏱️ {activeTab === 'normal' && 'timeTaken' in result 
+                           ? formatTime(result.timeTaken) 
+                           : activeTab === 'ai' && 'timeSpent' in result 
+                           ? formatTime(result.timeSpent)
+                           : 'N/A'}
                     </td>
                     <td className="date-cell">
                       {formatDate(result.timestamp)}

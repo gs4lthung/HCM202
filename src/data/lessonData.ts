@@ -13,7 +13,7 @@ export const lessonData: LessonContent = {
     "https://cly.1cdn.vn/2023/11/08/cover-loat-bai-xay-dung-nha-nuoc-pq-b1.jpg",
     "https://bcp.cdnchinhphu.vn/334894974524682240/2022/10/3/img0425-1664767833957315204122.jpg",
     "https://kiemsat.1cdn.vn/thumbs/600x315/2023/03/10/24hhoc.edu_.vn-tu-tuong-ho-chi-minh-ve-nha-nuoc-phap-quyen.png",
-    "https://th.bing.com/th/id/R.dbf00f83ae9876383577fc5e54c29628?rik=Z9HIpRqxT7xgAg&riu=http%3a%2f%2fquocphongthudo.vn%2fupload%2f2001606%2ffck%2ffiles%2fimage_71f35.png&ehk=uzpCm5h043IWLcrRD7pjLf1EaokCz1nblHmr5dsJ5xM%3d&risl=&pid=ImgRaw&r=0",
+    "http://quocphongthudo.vn/upload/2001606/fck/files/image_71f35.png",
     "https://tse3.mm.bing.net/th/id/OIP.p-quJftP-6_02V3lnzOv5QHaEo?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
   ],
   cards: [

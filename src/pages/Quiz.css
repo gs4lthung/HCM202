@@ -465,6 +465,14 @@
   margin-top: 1rem;
 }
 
+.result-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
 .retry-button {
   background: var(--info-color);
   color: white;
@@ -480,6 +488,25 @@
 .retry-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.leaderboard-button {
+  background: var(--success-color);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.leaderboard-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background: #2f855a;
 }
 
 /* --- Loading & Error --- */

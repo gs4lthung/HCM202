@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { quizQuestions } from '../data/quizQuestions';
@@ -24,6 +25,7 @@ interface Question {
 }
 
 const Quiz: React.FC = () => {
+  const navigate = useNavigate();
   const [quizMode, setQuizMode] = useState<QuizMode>('standard');
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
   const [isGenerating, setIsGenerating] = useState(false);
@@ -199,16 +201,20 @@ const Quiz: React.FC = () => {
     
     // Lưu kết quả vào Firestore
     try {
-      const quizResult: Omit<QuizResult, 'id'> = {
+      const baseQuizResult = {
         username: username.trim(),
         score: finalScore,
         totalQuestions: currentQuestions.length,
         timeTaken: actualTimeTaken,
         quizDuration: getTotalQuizTime(),
         timestamp: new Date(),
-        quizType: quizMode === 'ai' ? `ai-${difficulty}` : 'standard',
-        difficulty: quizMode === 'ai' ? difficulty : undefined
+        quizType: quizMode === 'ai' ? `ai-${difficulty}` : 'standard'
       };
+
+      // Only include difficulty field if it exists (for AI quizzes)
+      const quizResult: Omit<QuizResult, 'id'> = quizMode === 'ai' 
+        ? { ...baseQuizResult, difficulty }
+        : baseQuizResult;
       
       // Lưu vào collection phù hợp
       const collectionName = quizMode === 'ai' ? 'aiQuizResults' : 'quizResults';
@@ -366,7 +372,6 @@ const Quiz: React.FC = () => {
   // Màn hình kết quả
   if (isQuizFinished && showResult) {
     const percentage = currentQuestions.length > 0 ? Math.round((score / currentQuestions.length) * 100) : 0;
-    const strokeDashoffset = 283 - (283 * percentage) / 100; // 283 is the circumference of the circle
     
     return (
       <div className="quiz-container">
@@ -429,9 +434,14 @@ const Quiz: React.FC = () => {
             ))}
           </div>
           
-          <button className="retry-button" onClick={resetQuiz}>
-            Làm Lại
-          </button>
+          <div className="result-actions">
+            <button className="retry-button" onClick={resetQuiz}>
+              Làm Lại
+            </button>
+            <button className="leaderboard-button" onClick={() => navigate('/leaderboard')}>
+              Xem Bảng Xếp Hạng
+            </button>
+          </div>
         </div>
       </div>
     );
