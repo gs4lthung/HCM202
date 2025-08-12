@@ -38,6 +38,7 @@ const Quiz: React.FC = () => {
   const [isStarted, setIsStarted] = useState(false);
   const [startTime, setStartTime] = useState(0);
   const [showResult, setShowResult] = useState(false);
+  const [aiError, setAIError] = useState<string | null>(null);
 
   // Get question time limit based on quiz mode
   const getQuestionTimeLimit = () => {
@@ -85,17 +86,16 @@ const Quiz: React.FC = () => {
 
   // Initialize questions based on mode
   useEffect(() => {
-    if (quizMode === 'standard') {
-      setCurrentQuestions(quizQuestions.map(q => ({
-        ...q,
-        correctAnswer: q.correctAnswer
-      })));
-    } else if (quizMode === 'ai') {
-      // Reset questions for AI mode
-      setCurrentQuestions([]);
-    }
-    // Update time when mode changes (only if not started)
     if (!isStarted) {
+      if (quizMode === 'standard') {
+        setCurrentQuestions(quizQuestions.map(q => ({
+          ...q,
+          correctAnswer: q.correctAnswer
+        })));
+      } else if (quizMode === 'ai') {
+        // Chỉ reset nếu chưa có câu hỏi AI
+        setCurrentQuestions([]);
+      }
       setTimeLeft(getQuestionTimeLimit());
       setTotalTimeLeft(getTotalQuizTime());
     }
@@ -103,23 +103,38 @@ const Quiz: React.FC = () => {
 
   const generateAIQuizData = async () => {
     try {
+      setAIError(null);
       console.log('Generating AI quiz with difficulty:', difficulty); // Debug log
       const data = await generateAIQuiz(difficulty);
       console.log('AI quiz data received:', data); // Debug log
-      const aiQuestions = data.questions.map(q => ({
-        question: q.question,
-        options: q.options,
-        correctAnswer: q.correct,
-        explanation: q.explanation
-      }));
+      // Kiểm tra dữ liệu hợp lệ
+      if (!data || !Array.isArray(data.questions) || data.questions.length === 0) {
+        setAIError('Không nhận được câu hỏi AI hợp lệ. Vui lòng thử lại.');
+        setCurrentQuestions([]);
+        return null;
+      }
+      // Kiểm tra từng câu hỏi
+      const aiQuestions = data.questions
+        .filter(q => q && q.question && Array.isArray(q.options) && q.options.length === 4 && typeof q.correct === 'number')
+        .map(q => ({
+          question: q.question,
+          options: q.options,
+          correctAnswer: q.correct,
+          explanation: q.explanation
+        }));
+      if (aiQuestions.length === 0) {
+        setAIError('Không có câu hỏi AI hợp lệ. Vui lòng thử lại.');
+        setCurrentQuestions([]);
+        return null;
+      }
       setCurrentQuestions(aiQuestions);
       console.log('Generated AI questions:', aiQuestions); // Debug log
-      return true;
+      return aiQuestions; // Return the questions instead of just true
     } catch (error) {
       console.error('Error generating AI quiz:', error);
-      alert('Có lỗi xảy ra khi tạo câu hỏi AI. Vui lòng thử lại.');
+      setAIError('Có lỗi xảy ra khi tạo câu hỏi AI. Vui lòng thử lại.');
       setCurrentQuestions([]); // Reset questions on error
-      return false;
+      return null;
     } finally {
       setIsGenerating(false);
     }
@@ -131,11 +146,15 @@ const Quiz: React.FC = () => {
       return;
     }
 
+    let questionsToUse = currentQuestions;
+
     if (quizMode === 'ai') {
-      const success = await generateAIQuizData();
-      if (!success) {
+      setIsGenerating(true); // Set loading state
+      const aiQuestions = await generateAIQuizData();
+      if (!aiQuestions || aiQuestions.length === 0) {
         return; // Error occurred in generation
       }
+      questionsToUse = aiQuestions; // Use the returned questions directly
     }
 
     // Set initial time based on quiz mode
@@ -143,6 +162,7 @@ const Quiz: React.FC = () => {
     setTotalTimeLeft(getTotalQuizTime());
     setIsStarted(true);
     setStartTime(Date.now());
+    console.log('Quiz started with questions:', questionsToUse.length);
   };
 
   const handleAnswerSelect = (answerIndex: number) => {
@@ -231,7 +251,7 @@ const Quiz: React.FC = () => {
         <div className="quiz-start">
           <h1>🤖 Đang tạo câu hỏi AI</h1>
           <p className="quiz-description">
-            Vui lòng đợi trong giây lát, AI đang tạo {5} câu hỏi về tư tưởng Hồ Chí Minh với độ khó {difficulty === 'easy' ? 'Dễ' : difficulty === 'medium' ? 'Trung bình' : 'Khó'}...
+            Vui lòng đợi trong giây lát, AI đang tạo {5} câu hỏi về tư tưởng Hồ Chí Minh với mức độ {difficulty === 'easy' ? 'Dễ' : difficulty === 'medium' ? 'Trung bình' : 'Khó'}...
           </p>
           <div className="loading-animation">
             <div className="spinner"></div>
@@ -428,7 +448,23 @@ const Quiz: React.FC = () => {
   // Màn hình làm bài
   const question = currentQuestions[currentQuestion];
   
+  console.log('Current question index:', currentQuestion);
+  console.log('Total questions:', currentQuestions.length);
+  console.log('Current question:', question);
+  console.log('All questions:', currentQuestions);
+  
   if (!question) {
+    if (aiError) {
+      return (
+        <div className="quiz-container">
+          <div className="quiz-error">
+            <h2>Lỗi AI Quiz</h2>
+            <p>{aiError}</p>
+            <button className="retry-button" onClick={() => { setAIError(null); setIsStarted(false); }}>Thử lại</button>
+          </div>
+        </div>
+      );
+    }
     return <div className="quiz-container">Loading...</div>;
   }
   
