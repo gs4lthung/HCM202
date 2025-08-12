@@ -170,25 +170,26 @@ const Leaderboard: React.FC = () => {
         <p className="leaderboard-description">
           Top 10 học viên xuất sắc nhất trong các bài kiểm tra
         </p>
-        
-        <div className="tab-navigation">
-          <button 
-            className={`tab-button ${activeTab === 'normal' ? 'active' : ''}`}
-            onClick={() => setActiveTab('normal')}
-          >
-            Quiz Thường
-          </button>
-          <button 
-            className={`tab-button ${activeTab === 'ai' ? 'active' : ''}`}
-            onClick={() => setActiveTab('ai')}
-          >
-            AI Quiz
+        <div className="controls-container">
+          <div className="tab-navigation">
+            <button
+              className={`tab-button ${activeTab === 'normal' ? 'active' : ''}`}
+              onClick={() => setActiveTab('normal')}
+            >
+              Quiz Thường
+            </button>
+            <button
+              className={`tab-button ${activeTab === 'ai' ? 'active' : ''}`}
+              onClick={() => setActiveTab('ai')}
+            >
+              AI Quiz
+            </button>
+          </div>
+
+          <button className="refresh-button" onClick={fetchLeaderboards}>
+            🔄 Làm Mới
           </button>
         </div>
-        
-        <button className="refresh-button" onClick={fetchLeaderboards}>
-          🔄 Làm Mới
-        </button>
       </div>
 
       {getCurrentLeaderboard().length === 0 ? (

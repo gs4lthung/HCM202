@@ -248,12 +248,12 @@ const Quiz: React.FC = () => {
   if (isGenerating) {
     return (
       <div className="quiz-container">
-        <div className="quiz-start">
-          <h1>🤖 Đang tạo câu hỏi AI</h1>
-          <p className="quiz-description">
-            Vui lòng đợi trong giây lát, AI đang tạo {5} câu hỏi về tư tưởng Hồ Chí Minh với mức độ {difficulty === 'easy' ? 'Dễ' : difficulty === 'medium' ? 'Trung bình' : 'Khó'}...
-          </p>
+        <div className="quiz-card">
           <div className="loading-animation">
+            <h1>🤖 Đang tạo câu hỏi AI</h1>
+            <p className="quiz-description">
+              Vui lòng đợi trong giây lát, AI đang tạo {5} câu hỏi về tư tưởng Hồ Chí Minh với mức độ {difficulty === 'easy' ? 'Dễ' : difficulty === 'medium' ? 'Trung bình' : 'Khó'}...
+            </p>
             <div className="spinner"></div>
             <p>Đang xử lý...</p>
           </div>
@@ -268,23 +268,17 @@ const Quiz: React.FC = () => {
     
     return (
       <div className="quiz-container">
-        <div className="quiz-start">
+        <div className="quiz-card quiz-start">
           <h1>Kiểm Tra Kiến Thức</h1>
           <p className="quiz-description">
             {quizMode === 'ai' 
-              ? `Thử thách bản thân với ${questionCount} câu hỏi được tạo bởi AI về tư tưởng Hồ Chí Minh`
-              : `Bài kiểm tra gồm ${questionCount} câu hỏi trắc nghiệm về tư tưởng Hồ Chí Minh`}
+              ? `Thử thách bản thân với ${questionCount} câu hỏi được tạo bởi AI về tư tưởng Hồ Chí Minh.`
+              : `Bài kiểm tra gồm ${questionCount} câu hỏi trắc nghiệm về tư tưởng Hồ Chí Minh.`}
           </p>
           
-          {/* Time info highlight */}
-          <div className={`time-info ${quizMode === 'ai' ? 'ai-mode' : 'standard-mode'}`}>
-            <span>⏱️ {getQuestionTimeLimit()} giây/câu</span>
-            {quizMode === 'ai' && <span className="ai-badge">Thời gian dài hơn cho AI</span>}
-          </div>
-
           {/* Quiz Mode Selection */}
           <div className="quiz-mode-selection">
-            <h3>Chế độ kiểm tra:</h3>
+            <h3>Chế độ kiểm tra</h3>
             <div className="mode-options">
               <label className="mode-option">
                 <input
@@ -312,7 +306,7 @@ const Quiz: React.FC = () => {
           {/* Difficulty Selection for AI mode */}
           {quizMode === 'ai' && (
             <div className="difficulty-selection">
-              <h3>Độ khó:</h3>
+              <h3>Độ khó</h3>
               <div className="difficulty-options">
                 <label className="difficulty-option">
                   <input
@@ -348,21 +342,10 @@ const Quiz: React.FC = () => {
             </div>
           )}
           
-          <div className="quiz-rules">
-            <h3>Quy định:</h3>
-            <ul>
-              <li>Thời gian làm bài: {Math.round(getTotalQuizTime() / 60)} phút</li>
-              <li>Mỗi câu hỏi có thời gian: {getQuestionTimeLimit()} giây</li>
-              <li>Tự động chuyển câu khi hết thời gian</li>
-              <li>Không thể quay lại câu trước</li>
-              {quizMode === 'ai' && <li>Câu hỏi được tạo tự động bởi AI</li>}
-              {quizMode === 'ai' && <li>AI quiz có thời gian dài hơn do độ khó cao</li>}
-            </ul>
-          </div>
           <div className="username-input">
             <input
               type="text"
-              placeholder="Nhập tên của bạn"
+              placeholder="Nhập tên của bạn để bắt đầu"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               maxLength={50}
@@ -373,7 +356,7 @@ const Quiz: React.FC = () => {
             onClick={startQuiz}
             disabled={username.trim() === '' || isGenerating}
           >
-            {isGenerating ? '🤖 Đang tạo câu hỏi...' : 'Bắt Đầu Kiểm Tra'}
+            {isGenerating ? '🤖 Đang tạo...' : 'Bắt Đầu'}
           </button>
         </div>
       </div>
@@ -382,22 +365,31 @@ const Quiz: React.FC = () => {
 
   // Màn hình kết quả
   if (isQuizFinished && showResult) {
-    const percentage = Math.round((score / currentQuestions.length) * 100);
+    const percentage = currentQuestions.length > 0 ? Math.round((score / currentQuestions.length) * 100) : 0;
+    const strokeDashoffset = 283 - (283 * percentage) / 100; // 283 is the circumference of the circle
     
     return (
       <div className="quiz-container">
-        <div className="quiz-result">
+        <div className="quiz-card quiz-result">
           <h1>Kết Quả Kiểm Tra</h1>
           <div className="result-summary">
             <h2>Chúc mừng {username}!</h2>
-            <div className="quiz-info">
-              <span className="quiz-type">
-                {quizMode === 'ai' ? `🤖 Thách thức AI - Độ khó: ${difficulty === 'easy' ? 'Dễ' : difficulty === 'medium' ? 'Trung bình' : 'Khó'}` : '📚 Câu hỏi chuẩn'}
-              </span>
-            </div>
             <div className="score-display">
-              <span className="score-number">{score}/{currentQuestions.length}</span>
-              <span className="score-percentage">({percentage}%)</span>
+              <svg className="score-circle" width="150" height="150" viewBox="0 0 150 150">
+                <circle className="score-circle-bg" cx="75" cy="75" r="65"></circle>
+                <circle 
+                  className="score-circle-fg" 
+                  cx="75" 
+                  cy="75" 
+                  r="65" 
+                  strokeDasharray="408" 
+                  strokeDashoffset={408 - (408 * percentage) / 100}
+                ></circle>
+              </svg>
+              <div className="score-text">
+                <span className="score-number">{score}</span>
+                <span className="score-total">/{currentQuestions.length}</span>
+              </div>
             </div>
             <p className="result-message">
               {percentage >= 80 ? 'Xuất sắc! Bạn đã nắm vững kiến thức!' :
@@ -410,7 +402,7 @@ const Quiz: React.FC = () => {
           <div className="answer-review">
             <h3>Chi tiết câu trả lời:</h3>
             {currentQuestions.map((question, index) => (
-              <div key={question.id} className="answer-item">
+              <div key={question.id || index} className="answer-item">
                 <p className="question-text">
                   <strong>Câu {index + 1}:</strong> {question.question}
                 </p>
@@ -419,14 +411,14 @@ const Quiz: React.FC = () => {
                     <div 
                       key={optionIndex} 
                       className={`option ${
-                        optionIndex === question.correctAnswer ? 'correct' :
-                        optionIndex === selectedAnswers[index] && optionIndex !== question.correctAnswer ? 'incorrect' :
-                        ''
+                        optionIndex === question.correctAnswer ? 'correct' : ''
+                      } ${
+                        optionIndex === selectedAnswers[index] && optionIndex !== question.correctAnswer ? 'incorrect' : ''
                       }`}
                     >
+                      {optionIndex === question.correctAnswer && '✓ '}
+                      {optionIndex === selectedAnswers[index] && optionIndex !== question.correctAnswer && '✗ '}
                       {option}
-                      {optionIndex === question.correctAnswer && ' ✓'}
-                      {optionIndex === selectedAnswers[index] && optionIndex !== question.correctAnswer && ' ✗'}
                     </div>
                   ))}
                 </div>
@@ -438,7 +430,7 @@ const Quiz: React.FC = () => {
           </div>
           
           <button className="retry-button" onClick={resetQuiz}>
-            Làm Lại Bài Kiểm Tra
+            Làm Lại
           </button>
         </div>
       </div>
@@ -448,16 +440,11 @@ const Quiz: React.FC = () => {
   // Màn hình làm bài
   const question = currentQuestions[currentQuestion];
   
-  console.log('Current question index:', currentQuestion);
-  console.log('Total questions:', currentQuestions.length);
-  console.log('Current question:', question);
-  console.log('All questions:', currentQuestions);
-  
   if (!question) {
     if (aiError) {
       return (
         <div className="quiz-container">
-          <div className="quiz-error">
+          <div className="quiz-card quiz-error">
             <h2>Lỗi AI Quiz</h2>
             <p>{aiError}</p>
             <button className="retry-button" onClick={() => { setAIError(null); setIsStarted(false); }}>Thử lại</button>
@@ -465,54 +452,63 @@ const Quiz: React.FC = () => {
         </div>
       );
     }
-    return <div className="quiz-container">Loading...</div>;
+    return (
+      <div className="quiz-container">
+        <div className="quiz-card loading-animation">
+          <div className="spinner"></div>
+          <p>Đang tải câu hỏi...</p>
+        </div>
+      </div>
+    );
   }
   
   return (
     <div className="quiz-container">
-      <div className="quiz-header">
-        <div className="quiz-progress">
-          <span>Câu {currentQuestion + 1}/{currentQuestions.length}</span>
-          <div className="progress-bar">
-            <div 
-              className="progress-fill"
-              style={{ width: `${((currentQuestion + 1) / currentQuestions.length) * 100}%` }}
-            />
+      <div className="quiz-card">
+        <div className="quiz-header">
+          <div className="quiz-progress">
+            <span>Câu {currentQuestion + 1}/{currentQuestions.length}</span>
+            <div className="progress-bar">
+              <div 
+                className="progress-fill"
+                style={{ width: `${((currentQuestion + 1) / currentQuestions.length) * 100}%` }}
+              />
+            </div>
+          </div>
+          <div className="quiz-timers">
+            <div className="question-timer">
+              <span>⏳ {timeLeft}s</span>
+            </div>
+            <div className="total-timer">
+              <span>⏱️ {formatTime(totalTimeLeft)}</span>
+            </div>
           </div>
         </div>
-        <div className="quiz-timers">
-          <div className="question-timer">
-            <span>Câu hỏi: {timeLeft}s</span>
-          </div>
-          <div className="total-timer">
-            <span>Tổng: {formatTime(totalTimeLeft)}</span>
-          </div>
-        </div>
-      </div>
 
-      <div className="question-container">
-        <h2 className="question-text">{question.question}</h2>
-        <div className="options-container">
-          {question.options.map((option, index) => (
-            <button
-              key={index}
-              className={`option-button ${selectedAnswers[currentQuestion] === index ? 'selected' : ''}`}
-              onClick={() => handleAnswerSelect(index)}
+        <div className="question-container">
+          <h2 className="question-text">{question.question}</h2>
+          <div className="options-container">
+            {question.options.map((option, index) => (
+              <button
+                key={index}
+                className={`option-button ${selectedAnswers[currentQuestion] === index ? 'selected' : ''}`}
+                onClick={() => handleAnswerSelect(index)}
+              >
+                <span className="option-letter">{String.fromCharCode(65 + index)}</span>
+                <span className="option-text">{option}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="question-actions">
+            <button 
+              className="next-button"
+              onClick={handleNextQuestion}
+              disabled={selectedAnswers[currentQuestion] === undefined}
             >
-              <span className="option-letter">{String.fromCharCode(65 + index)}</span>
-              <span className="option-text">{option}</span>
+              {currentQuestion === currentQuestions.length - 1 ? 'Hoàn Thành' : 'Câu Tiếp Theo'}
             </button>
-          ))}
-        </div>
-
-        <div className="question-actions">
-          <button 
-            className="next-button"
-            onClick={handleNextQuestion}
-            disabled={selectedAnswers[currentQuestion] === undefined}
-          >
-            {currentQuestion === currentQuestions.length - 1 ? 'Hoàn Thành' : 'Câu Tiếp Theo'}
-          </button>
+          </div>
         </div>
       </div>
     </div>
