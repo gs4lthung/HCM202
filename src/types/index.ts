@@ -24,10 +24,16 @@ export interface ChatMessage {
   content: string;
   timestamp: Date;
 }
+type LessonItem =  
+  | { title: string; content: (string | LessonItem)[] };
 
 export interface LessonContent {
   title: string;
   summary: string[];
   images: string[];
-  content: string;
+   cards: {
+    color: string;
+    title: string;
+    items: LessonItem[];
+}[]
 }
