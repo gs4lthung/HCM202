@@ -3,7 +3,6 @@ import { lessonData } from "../data/lessonData";
 import VideoSection from "../components/VideoSection";
 import Timeline from "../components/Timeline";
 import KeyQuotes from "../components/KeyQuotes";
-import InteractiveElements from "../components/InteractiveElements";
 import "./LessonIntroduction.css";
 
 // Helper function to recursively render content
