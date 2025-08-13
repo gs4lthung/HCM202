@@ -59,7 +59,7 @@ const Navigation: React.FC = () => {
               }
               onClick={closeMobileMenu}
             >
-              Kiểm Tra & Thách Thức
+              Kiểm Tra Kiến Thức
             </Link>
           </li>
           <li>

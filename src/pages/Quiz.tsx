@@ -294,7 +294,7 @@ const Quiz: React.FC = () => {
                   checked={quizMode === 'standard'}
                   onChange={() => setQuizMode('standard')}
                 />
-                <span>📚 Câu hỏi chuẩn</span>
+                <span>📚 Quiz Thường</span>
               </label>
               <label className="mode-option">
                 <input
@@ -304,7 +304,7 @@ const Quiz: React.FC = () => {
                   checked={quizMode === 'ai'}
                   onChange={() => setQuizMode('ai')}
                 />
-                <span>🤖 Thách thức AI</span>
+                <span>🤖 AI Quiz</span>
               </label>
             </div>
           </div>
