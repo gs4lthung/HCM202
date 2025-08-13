@@ -16,16 +16,14 @@ const Timeline: React.FC<TimelineProps> = ({ timeline }) => {
       </h3>
       
       <div className="timeline-container">
+        <div className="timeline-line"></div>
         {timeline.map((item, index) => (
           <div key={index} className="timeline-item">
-            <div className="timeline-marker">
-              <div className="timeline-year">{item.year}</div>
-              <div className="timeline-dot">
-                <Star size={12} />
-              </div>
+            <div className={`timeline-year year-${index}`}>{item.year}</div>
+            <div className={`timeline-dot year-${index}`}>
+              <Star size={12} />
             </div>
-            
-            <div className="timeline-content">
+            <div className={`timeline-tooltip year-${index}`}>
               <h4 className="timeline-event">{item.event}</h4>
               <p className="timeline-description">{item.description}</p>
               <div className="timeline-significance">
