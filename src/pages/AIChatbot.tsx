@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import type { ChatMessage } from '../types';
 import './AIChatbot.css';
+import { Bot, User, Trash2, Send, CornerDownLeft } from 'lucide-react';
 
 interface AIChatbotProps {
   isFloatingMode?: boolean;
@@ -199,10 +200,14 @@ Hãy trả lời một cách thấu đáo và giáo dục!`;
     <div className={`chatbot-container ${isFloatingMode ? 'floating-mode' : ''}`}>
       {!isFloatingMode && (
         <div className="chatbot-header">
-          <h1>🤖 Trợ Lý AI - Tư Tưởng Hồ Chí Minh</h1>
+          <h1>
+            <Bot size={24} />
+            Trợ Lý AI - Tư Tưởng Hồ Chí Minh
+          </h1>
           <div className="header-actions">
             <button className="clear-button" onClick={clearChat}>
-              🗑️ Xóa Chat
+              <Trash2 size={16} />
+              Xóa Chat
             </button>
           </div>
         </div>
@@ -211,6 +216,9 @@ Hãy trả lời một cách thấu đáo và giáo dục!`;
       <div className="chat-messages">
         {messages.map((message) => (
           <div key={message.id} className={`message ${message.role}`}>
+            <div className="message-avatar">
+              {message.role === 'assistant' ? <Bot size={16} /> : <User size={16} />}
+            </div>
             <div className="message-content">
               <div className="message-text">{message.content}</div>
               <div className="message-time">{formatTime(message.timestamp)}</div>
@@ -273,12 +281,14 @@ Hãy trả lời một cách thấu đáo và giáo dục!`;
             onClick={sendMessage} 
             disabled={!inputMessage.trim() || isLoading}
             className="send-button"
+            aria-label="Gửi"
           >
-            {isLoading ? '⏳' : '📤'}
+            {isLoading ? <div className="typing-indicator-small"></div> : <Send size={16} />}
           </button>
         </div>
         {!isFloatingMode && (
           <p className="input-hint">
+            <CornerDownLeft size={12} style={{ display: 'inline-block', marginRight: '4px' }} />
             Nhấn Enter để gửi, Shift+Enter để xuống dòng
           </p>
         )}

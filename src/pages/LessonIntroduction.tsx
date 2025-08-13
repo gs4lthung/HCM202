@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { lessonData } from "../data/lessonData";
+import VideoSection from "../components/VideoSection";
+import Timeline from "../components/Timeline";
+import KeyQuotes from "../components/KeyQuotes";
+import InteractiveElements from "../components/InteractiveElements";
 import "./LessonIntroduction.css";
 
 // Helper function to recursively render content
@@ -147,6 +151,26 @@ const LessonIntroduction: React.FC = () => {
           ))}
         </div>
       </section>
+
+      {/* Video Section */}
+      {lessonData.videos && lessonData.videos.length > 0 && (
+        <VideoSection videos={lessonData.videos} />
+      )}
+
+      {/* Timeline Section */}
+      {lessonData.timeline && lessonData.timeline.length > 0 && (
+        <Timeline timeline={lessonData.timeline} />
+      )}
+
+      {/* Key Quotes Section */}
+      {lessonData.keyQuotes && lessonData.keyQuotes.length > 0 && (
+        <KeyQuotes quotes={lessonData.keyQuotes} />
+      )}
+
+      {/* Interactive Elements Section */}
+      {/* {lessonData.interactiveElements && lessonData.interactiveElements.length > 0 && (
+        <InteractiveElements elements={lessonData.interactiveElements} />
+      )} */}
 
       <div className="lesson-footer">
         <p className="study-tip">

@@ -31,9 +31,43 @@ export interface LessonContent {
   title: string;
   summary: string[];
   images: string[];
-   cards: {
+  videos?: VideoContent[];
+  interactiveElements?: InteractiveElement[];
+  timeline?: TimelineItem[];
+  keyQuotes?: Quote[];
+  cards: {
     color: string;
     title: string;
     items: LessonItem[];
-}[]
+  }[];
+}
+
+export interface VideoContent {
+  id: string;
+  title: string;
+  description: string;
+  embedUrl: string;
+  duration?: string;
+  category: 'documentary' | 'lecture' | 'historical' | 'educational';
+}
+
+export interface InteractiveElement {
+  id: string;
+  type: 'poll' | 'reflection' | 'discussion' | 'mindmap';
+  title: string;
+  content: string;
+  options?: string[];
+}
+
+export interface TimelineItem {
+  year: string;
+  event: string;
+  description: string;
+  significance: string;
+}
+
+export interface Quote {
+  text: string;
+  context: string;
+  significance: string;
 }

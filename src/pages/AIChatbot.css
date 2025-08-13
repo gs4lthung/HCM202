@@ -1,12 +1,15 @@
 /* src/pages/AIChatbot.css */
 .chatbot-container {
-  max-width: 100%;
-  margin: 0 auto;
-  background: var(--background-color);
-  height: calc(100vh - 120px); /* Adjust based on nav height */
+  max-width: 900px;
+  margin: 2rem auto;
+  background: var(--card-background);
+  height: calc(100vh - 160px); /* Adjust based on nav height + margin */
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
 }
 
 .chatbot-container.floating-mode {
@@ -19,14 +22,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-  padding: 0 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .chatbot-header h1 {
   color: var(--primary-color);
-  font-size: 2rem;
-  font-weight: 800;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .header-actions {
@@ -34,21 +40,20 @@
   gap: 1rem;
 }
 
-.api-key-button,
 .clear-button {
-  background: var(--card-background);
+  background: transparent;
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  border-radius: 8px;
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
+  color: var(--text-color);
   transition: all 0.3s ease;
 }
 
-.api-key-button:hover,
 .clear-button:hover {
-  background: var(--background-color);
+  background: #fef2f2;
   border-color: var(--primary-color);
   color: var(--primary-color);
 }
@@ -93,10 +98,7 @@
 .chat-messages {
   flex: 1;
   overflow-y: auto;
-  padding: 1rem;
-  background: var(--card-background);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
+  padding: 1.5rem;
 }
 
 .chatbot-container.floating-mode .chat-messages {
@@ -107,7 +109,9 @@
 .message {
   display: flex;
   margin-bottom: 1.5rem;
-  max-width: 85%;
+  max-width: 75%;
+  align-items: flex-end;
+  gap: 0.75rem;
 }
 
 .message.user {
@@ -121,8 +125,8 @@
 }
 
 .message-avatar {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background-color: var(--border-color);
   color: var(--primary-color);
@@ -130,13 +134,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 1rem;
+  font-size: 0.9rem;
+  flex-shrink: 0;
 }
 
 .message.user .message-avatar {
-  margin-right: 0;
-  margin-left: 1rem;
-  background-color: var(--primary-color);
+  background: var(--primary-gradient);
   color: white;
 }
 
@@ -149,14 +152,14 @@
 .message.user .message-content {
   background: var(--primary-gradient);
   color: white;
-  border-bottom-right-radius: 5px;
+  border-radius: 18px 18px 4px 18px;
 }
 
 .message.assistant .message-content {
   background: var(--background-color);
   color: var(--secondary-color);
   border: 1px solid var(--border-color);
-  border-bottom-left-radius: 5px;
+  border-radius: 18px 18px 18px 4px;
 }
 
 .message-text {
@@ -164,12 +167,15 @@
   white-space: pre-wrap;
 }
 
-/* --- Typing Indicator --- */
-.typing-indicator {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  padding: 1rem 1.2rem;
+.message-time {
+  font-size: 0.75rem;
+  color: #a0aec0;
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+.message.assistant .message-time {
+  color: #a0aec0;
 }
 
 .typing-indicator span {
@@ -188,9 +194,30 @@
   40% { transform: scale(1); }
 }
 
+.typing-indicator-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* --- Suggested Questions --- */
 .suggested-questions {
-  padding: 0 1rem 1rem;
+  padding: 0 1.5rem 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.suggested-questions h4 {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin: 1rem 0 0.75rem;
+  font-weight: 600;
 }
 
 .suggestions-grid {
@@ -201,14 +228,15 @@
 }
 
 .suggestion-button {
-  background: var(--card-background);
+  background: var(--background-color);
   border: 1px solid var(--border-color);
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
+  border-radius: 16px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
+  color: var(--text-color);
 }
 
 .suggestion-button:hover {
@@ -219,33 +247,35 @@
 
 /* --- Chat Input --- */
 .chat-input {
-  padding: 1rem;
-  background: var(--background-color);
+  padding: 1rem 1.5rem;
+  background: var(--card-background);
   border-top: 1px solid var(--border-color);
 }
 
 .input-container {
   display: flex;
   gap: 1rem;
-  align-items: center;
-  background: var(--card-background);
-  border-radius: var(--border-radius);
-  padding: 0.5rem;
-  border: 2px solid var(--border-color);
-  transition: border-color 0.3s ease;
+  align-items: flex-start;
+  background: var(--background-color);
+  border-radius: 12px;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .input-container:focus-within {
   border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(197, 48, 48, 0.1);
 }
 
 .input-container textarea {
   flex: 1;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   border: none;
   background: transparent;
   font-size: 1rem;
   resize: none;
+  line-height: 1.5;
   min-height: 24px;
   max-height: 120px;
 }
@@ -259,18 +289,35 @@
   color: white;
   border: none;
   border-radius: 8px;
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
+  font-size: 1.1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.send-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(197, 48, 48, 0.3);
 }
 
 .send-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.input-hint {
+  font-size: 0.8rem;
+  color: #a0aec0;
+  margin-top: 0.5rem;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 /* --- Scrollbar --- */

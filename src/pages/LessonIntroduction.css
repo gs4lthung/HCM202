@@ -1,4 +1,8 @@
 /* src/pages/LessonIntroduction.css */
+@import '../components/VideoSection.css';
+@import '../components/Timeline.css';
+@import '../components/KeyQuotes.css';
+@import '../components/InteractiveElements.css';
 .lesson-container {
   padding: 2rem;
   max-width: 1200px;
