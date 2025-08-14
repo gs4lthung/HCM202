@@ -108,7 +108,7 @@ const Quiz: React.FC = () => {
       setAIError(null);
       console.log('Generating AI quiz with difficulty:', difficulty); // Debug log
       const data = await generateAIQuiz(difficulty);
-      console.log('AI quiz data received:', data); // Debug log
+      // console.log('AI quiz data received:', data); // Debug log
       // Kiểm tra dữ liệu hợp lệ
       if (!data || !Array.isArray(data.questions) || data.questions.length === 0) {
         setAIError('Không nhận được câu hỏi AI hợp lệ. Vui lòng thử lại.');
@@ -130,7 +130,7 @@ const Quiz: React.FC = () => {
         return null;
       }
       setCurrentQuestions(aiQuestions);
-      console.log('Generated AI questions:', aiQuestions); // Debug log
+      // console.log('Generated AI questions:', aiQuestions); // Debug log
       return aiQuestions; // Return the questions instead of just true
     } catch (error) {
       console.error('Error generating AI quiz:', error);
