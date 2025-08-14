@@ -174,8 +174,6 @@ export const lessonData: LessonContent = {
     "https://quocphongthudo.vn/upload/2001606/20200730/a8a51eb04dc4056f47dc4fe82f8e8e7c87eedb40d1.jpg",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShu4Zi4ammbTfH-kFLCNrIdcTZtKYGmNGEbi_u7EHMmf5AeAwzP1HLy75c6HVEA9hIYsI&usqp=CAU",
     "https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/07/ngay-thanh-lap-Dang-Cong-san-Viet-Nam-4.jpg",
-    "https://mt.gov.vn/Images/editor/images/unnamed(1).jpg",
-    "https://mt.gov.vn/Images/editor/images/con-duong-sang-lap-dang-cong-san-viet-nam-cua-nguyen-ai-quoc-ho-chi-minh.jpg",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI3jfuU2AY-Ro3G81k5d80OxM7a6wJKSCjig&s"
   ],
   cards: [
