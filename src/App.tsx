@@ -5,6 +5,7 @@ import LessonIntroduction from './pages/LessonIntroduction';
 import Quiz from './pages/Quiz';
 import Leaderboard from './pages/Leaderboard';
 import AIChatbot from './pages/AIChatbot';
+import About from './pages/About';
 import './App.css';
 
 function AppContent() {
@@ -21,6 +22,7 @@ function AppContent() {
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/chatbot" element={<AIChatbot />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </main>
       <FloatingChat />

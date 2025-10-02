@@ -18,10 +18,12 @@ const Navigation: React.FC = () => {
   return (
     <nav className="navigation">
       <div className="nav-container">
-        <div className="icon-container">
-          <BookOpen className="book-icon" />
+        <div className="nav-logo-section">
+          <div className="icon-container">
+            <BookOpen className="book-icon" />
+          </div>
+          <h1 className="nav-title">Tư Tưởng Hồ Chí Minh</h1>
         </div>
-        <h1 className="nav-title">Tư Tưởng Hồ Chí Minh</h1>
 
         {/* Mobile Menu Button */}
         <button
@@ -86,6 +88,19 @@ const Navigation: React.FC = () => {
               onClick={closeMobileMenu}
             >
               Hỏi Đáp AI
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/about"
+              className={
+                location.pathname === "/about"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+              onClick={closeMobileMenu}
+            >
+              Về Chúng Tôi
             </Link>
           </li>
         </ul>

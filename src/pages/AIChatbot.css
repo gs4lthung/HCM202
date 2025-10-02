@@ -320,6 +320,244 @@
   justify-content: flex-end;
 }
 
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .chatbot-container {
+    max-width: 800px;
+    margin: var(--spacing-6) auto;
+    height: calc(100vh - 180px);
+  }
+
+  .chatbot-header h1 {
+    font-size: var(--font-size-xl);
+  }
+
+  .message {
+    max-width: 80%;
+  }
+
+  .suggested-questions {
+    padding: 0 var(--spacing-4) var(--spacing-4);
+  }
+
+  .chat-input {
+    padding: var(--spacing-4);
+  }
+}
+
+@media (max-width: 768px) {
+  .chatbot-container {
+    max-width: 100%;
+    margin: var(--spacing-4) var(--spacing-3);
+    height: calc(100vh - 200px);
+    border-radius: var(--radius-2xl);
+  }
+
+  .chatbot-header {
+    padding: var(--spacing-3) var(--spacing-4);
+  }
+
+  .chatbot-header h1 {
+    font-size: var(--font-size-lg);
+  }
+
+  .clear-button {
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-sm);
+  }
+
+  .api-key-section {
+    margin: 0 var(--spacing-4) var(--spacing-4);
+    padding: var(--spacing-4);
+  }
+
+  .api-key-input {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .api-key-input input {
+    margin-bottom: 0;
+  }
+
+  .api-key-input button {
+    width: 100%;
+  }
+
+  .chat-messages {
+    padding: var(--spacing-4);
+  }
+
+  .message {
+    max-width: 85%;
+    gap: var(--spacing-2);
+  }
+
+  .message-avatar {
+    width: 28px;
+    height: 28px;
+    font-size: var(--font-size-xs);
+  }
+
+  .message-content {
+    padding: var(--spacing-3) var(--spacing-4);
+  }
+
+  .message-text {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+  }
+
+  .message-time {
+    font-size: 0.7rem;
+  }
+
+  .suggested-questions {
+    padding: 0 var(--spacing-4) var(--spacing-3);
+  }
+
+  .suggested-questions h4 {
+    font-size: var(--font-size-sm);
+    margin: var(--spacing-3) 0 var(--spacing-2);
+  }
+
+  .suggestion-button {
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-xs);
+  }
+
+  .chat-input {
+    padding: var(--spacing-3);
+  }
+
+  .input-container {
+    padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) var(--spacing-3);
+  }
+
+  .input-container textarea {
+    font-size: var(--font-size-sm);
+    min-height: 20px;
+    max-height: 100px;
+  }
+
+  .send-button {
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-base);
+  }
+
+  .input-hint {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .chatbot-container {
+    margin: var(--spacing-2);
+    margin-top: var(--spacing-3);
+    height: calc(100vh - 220px);
+    border-radius: var(--radius-xl);
+  }
+
+  .chatbot-header {
+    padding: var(--spacing-2) var(--spacing-3);
+  }
+
+  .chatbot-header h1 {
+    font-size: var(--font-size-base);
+    gap: var(--spacing-2);
+  }
+
+  .header-actions {
+    gap: var(--spacing-2);
+  }
+
+  .clear-button {
+    padding: var(--spacing-1) var(--spacing-2);
+    font-size: var(--font-size-xs);
+  }
+
+  .api-key-section {
+    margin: 0 var(--spacing-3) var(--spacing-3);
+    padding: var(--spacing-3);
+  }
+
+  .api-key-section h3 {
+    font-size: var(--font-size-base);
+  }
+
+  .api-note {
+    font-size: var(--font-size-xs);
+  }
+
+  .chat-messages {
+    padding: var(--spacing-3);
+  }
+
+  .message {
+    max-width: 90%;
+    margin-bottom: var(--spacing-3);
+  }
+
+  .message-avatar {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+  }
+
+  .message-content {
+    padding: var(--spacing-2) var(--spacing-3);
+  }
+
+  .message-text {
+    font-size: var(--font-size-xs);
+  }
+
+  .suggested-questions {
+    padding: 0 var(--spacing-3) var(--spacing-2);
+  }
+
+  .suggestions-grid {
+    gap: var(--spacing-2);
+  }
+
+  .suggestion-button {
+    padding: var(--spacing-1) var(--spacing-2);
+    font-size: 0.75rem;
+  }
+
+  .chat-input {
+    padding: var(--spacing-2);
+  }
+
+  .input-container {
+    padding: var(--spacing-1) var(--spacing-1) var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-lg);
+  }
+
+  .input-container textarea {
+    font-size: var(--font-size-xs);
+    min-height: 18px;
+    max-height: 80px;
+  }
+
+  .send-button {
+    width: 28px;
+    height: 28px;
+    font-size: var(--font-size-sm);
+  }
+
+  .typing-indicator span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .typing-indicator-small {
+    width: 14px;
+    height: 14px;
+  }
+}
+
 /* --- Scrollbar --- */
 .chat-messages::-webkit-scrollbar { width: 6px; }
 .chat-messages::-webkit-scrollbar-track { background: transparent; }

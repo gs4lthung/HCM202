@@ -1,0 +1,233 @@
+/* About Page Styles */
+
+.about-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-8);
+  background: linear-gradient(135deg, var(--secondary-50), var(--primary-50));
+  font-family: var(--font-family);
+  min-height: calc(100vh - 80px);
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: var(--spacing-12);
+}
+
+.about-header h1 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-600);
+  margin-bottom: var(--spacing-4);
+}
+
+.about-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--secondary-600);
+  font-weight: var(--font-weight-medium);
+}
+
+section {
+  margin-bottom: var(--spacing-12);
+}
+
+section h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary-700);
+  margin-bottom: var(--spacing-6);
+  border-bottom: 2px solid var(--primary-200);
+  padding-bottom: var(--spacing-2);
+}
+
+.project-intro p {
+  font-size: var(--font-size-base);
+  line-height: 1.8;
+  color: var(--neutral-700);
+  text-align: justify;
+}
+
+.team-section {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-8);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-6);
+}
+
+.team-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  border: 1px solid var(--primary-100);
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-300);
+}
+
+.member-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto var(--spacing-4);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--primary-200);
+  box-shadow: var(--shadow-md);
+}
+
+.member-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.member-name {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary-700);
+  margin-bottom: var(--spacing-2);
+}
+
+.member-role {
+  font-size: var(--font-size-sm);
+  color: var(--secondary-600);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-3);
+}
+
+.member-description {
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--neutral-600);
+}
+
+.contact-section {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-8);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.contact-section p {
+  font-size: var(--font-size-base);
+  line-height: 1.8;
+  color: var(--neutral-700);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .about-container {
+    padding: var(--spacing-8);
+  }
+
+  .about-header h1 {
+    font-size: var(--font-size-4xl);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-5);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: var(--spacing-6);
+  }
+
+  .about-header h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .about-subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  section h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .project-intro p {
+    font-size: var(--font-size-base);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-4);
+  }
+
+  .team-section,
+  .contact-section {
+    padding: var(--spacing-6);
+  }
+
+  .member-name {
+    font-size: var(--font-size-lg);
+  }
+
+  .contact-section p {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: var(--spacing-4);
+  }
+
+  .about-header h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .about-subtitle {
+    font-size: var(--font-size-sm);
+  }
+
+  section h2 {
+    font-size: var(--font-size-lg);
+  }
+
+  .project-intro p {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+  }
+
+  .team-section,
+  .contact-section {
+    padding: var(--spacing-4);
+  }
+
+  .team-card {
+    padding: var(--spacing-4);
+  }
+
+  .member-name {
+    font-size: var(--font-size-base);
+  }
+
+  .contact-section p {
+    font-size: var(--font-size-xs);
+    line-height: 1.6;
+  }
+}
