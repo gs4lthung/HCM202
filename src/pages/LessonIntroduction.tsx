@@ -3,7 +3,6 @@ import { lessonData } from "../data/lessonData";
 import VideoSection from "../components/VideoSection";
 import Timeline from "../components/Timeline";
 import KeyQuotes from "../components/KeyQuotes";
-import { ChevronLeft, ChevronRight, Maximize2, X, Grid3x3 } from "lucide-react";
 import "./LessonIntroduction.css";
 
 // Helper function to recursively render content
@@ -19,7 +18,9 @@ function renderContent(content: any, key: any) {
     return (
       <div key={key}>
         <strong>{content.title}</strong>
-        {content.content.map((sub: any, subIdx: any) => renderContent(sub, subIdx))}
+        {content.content.map((sub: any, subIdx: any) =>
+          renderContent(sub, subIdx)
+        )}
       </div>
     );
   }
@@ -44,8 +45,7 @@ const LessonIntroduction: React.FC = () => {
   };
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [showThumbnails, setShowThumbnails] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused] = useState(false);
 
   const prevImage = () => {
     setCurrentImageIndex((prev) =>
@@ -63,18 +63,6 @@ const LessonIntroduction: React.FC = () => {
     setCurrentImageIndex(index);
   };
 
-  const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
-  };
-
-  const toggleThumbnails = () => {
-    setShowThumbnails(!showThumbnails);
-  };
-
-  const togglePause = () => {
-    setIsPaused(!isPaused);
-  };
-
   useEffect(() => {
     if (!isPaused) {
       const interval = setInterval(nextImage, 5000);
@@ -85,15 +73,14 @@ const LessonIntroduction: React.FC = () => {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') prevImage();
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'Escape' && isFullscreen) setIsFullscreen(false);
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "Escape" && isFullscreen) setIsFullscreen(false);
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isFullscreen]);
-
 
   return (
     <div className="lesson-container">
@@ -115,14 +102,16 @@ const LessonIntroduction: React.FC = () => {
 
       {lessonData.images.length > 0 && (
         <div className="carousel-container">
-          <div className={`carousel ${isFullscreen ? 'fullscreen' : ''}`}>
+          <div className={`carousel ${isFullscreen ? "fullscreen" : ""}`}>
             <div
               className="carousel-inner"
               style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
             >
               {lessonData.images.map((image, index) => (
                 <div
-                  className={`carousel-item ${index === currentImageIndex ? 'active' : ''}`}
+                  className={`carousel-item ${
+                    index === currentImageIndex ? "active" : ""
+                  }`}
                   key={index}
                 >
                   <div className="image-wrapper">
@@ -132,12 +121,15 @@ const LessonIntroduction: React.FC = () => {
                       className="lesson-image"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI2Y1ZjVmNSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5IaW5oIGFuaCBtaW5oIGjGsGE8L3RleHQ+PC9zdmc+";
+                        target.src =
+                          "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI2Y1ZjVmNSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5IaW5oIGFuaCBtaW5oIGjGsGE8L3RleHQ+PC9zdmc+";
                       }}
                     />
                     <div className="image-overlay">
                       <div className="image-info">
-                        <span className="image-counter">{index + 1} / {lessonData.images.length}</span>
+                        <span className="image-counter">
+                          {index + 1} / {lessonData.images.length}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -149,7 +141,9 @@ const LessonIntroduction: React.FC = () => {
               {lessonData.images.map((_, index) => (
                 <button
                   key={index}
-                  className={`indicator ${index === currentImageIndex ? 'active' : ''}`}
+                  className={`indicator ${
+                    index === currentImageIndex ? "active" : ""
+                  }`}
                   onClick={() => goToSlide(index)}
                   aria-label={`Đi đến hình ${index + 1}`}
                 />
@@ -159,13 +153,16 @@ const LessonIntroduction: React.FC = () => {
             <div className="carousel-progress">
               <div
                 className="progress-bar"
-                style={{ width: `${((currentImageIndex + 1) / lessonData.images.length) * 100}%` }}
+                style={{
+                  width: `${
+                    ((currentImageIndex + 1) / lessonData.images.length) * 100
+                  }%`,
+                }}
               />
             </div>
           </div>
         </div>
       )}
-
 
       <section className="content-section">
         <div className="content-wrapper">
@@ -187,7 +184,9 @@ const LessonIntroduction: React.FC = () => {
                       {openItem?.cardIndex === cardIndex &&
                         openItem?.itemIndex === itemIndex && (
                           <div className={`item-content border-${card.color}`}>
-                            {item.content.map((line, idx) => renderContent(line, idx))}
+                            {item.content.map((line, idx) =>
+                              renderContent(line, idx)
+                            )}
                           </div>
                         )}
                     </li>

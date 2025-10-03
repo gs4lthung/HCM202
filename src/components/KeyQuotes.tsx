@@ -1,5 +1,5 @@
 import React from "react";
-import { Quote as QuoteIcon, Info, ExternalLink } from "lucide-react";
+import { Quote as QuoteIcon, ExternalLink } from "lucide-react";
 import type { Quote } from "../types";
 import "./KeyQuotes.css";
 
