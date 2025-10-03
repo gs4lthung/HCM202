@@ -63,6 +63,21 @@ const VideoSection: React.FC<VideoSectionProps> = ({ videos }) => {
         {videos.map((video) => (
           <div key={video.id} className="video-card">
             <div className="video-thumbnail">
+              {video.thumbnailUrl ? (
+                <img
+                  src={video.thumbnailUrl}
+                  alt={video.title}
+                  className="thumbnail-image"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+              ) : null}
+              <div className={`thumbnail-fallback ${video.thumbnailUrl ? 'hidden' : ''}`}>
+                <Film size={48} />
+              </div>
               <div className="play-overlay" onClick={() => setSelectedVideo(video)}>
                 <Play size={32} />
               </div>

@@ -5,24 +5,31 @@ const About: React.FC = () => {
   const teamMembers = [
     {
       name: "Lâm Tiên Hưng",
+      role: "Xây dựng Web + Chatbot",
     },
     {
       name: "Nguyễn Anh Tuấn",
+      role: "Xây dựng Web + Chatbot",
     },
     {
       name: "Phạm Văn Quốc Vương ",
+      role: "Xây dựng Web + Chatbot",
     },
     {
       name: "Nguyễn Thanh Phong",
+      role: "Chuẩn bị nội dung",
     },
     {
       name: "Trương Gia Hải",
+      role: "Chuẩn bị nội dung",
     },
     {
       name: "Đặng Lê Hoàng Phúc",
+      role: "Chuẩn bị nội dung",
     },
     {
       name: "Phước Sang",
+      role: "Chuẩn bị nội dung",
     },
   ];
 
@@ -44,12 +51,58 @@ const About: React.FC = () => {
         </p>
       </section>
 
+      <section className="technology-section">
+        <h2>Công Nghệ Sử Dụng</h2>
+        <div className="tech-grid">
+          <div className="tech-card">
+            <div className="tech-proof">
+              <img src="/images/image.png " alt="Gemini Chatbot Implementation" />
+              <div className="proof-label">Chatbot AI đang hoạt động</div>
+            </div>
+            <h3>Google Gemini</h3>
+            <p>Tích hợp API Gemini để xây dựng chatbot thông minh, giúp trả lời câu hỏi và tạo bộ câu hỏi trắc nghiệm tự động về tư tưởng Hồ Chí Minh.</p>
+            <div className="tech-features">
+              <span>✅ Chatbot thông minh</span>
+              <span>✅ Tạo câu hỏi tự động</span>
+              <span>✅ API tích hợp</span>
+            </div>
+          </div>
+          <div className="tech-card">
+            <div className="tech-proof">
+              <img src="/images/claude-code.png" alt="Claude Code Implementation" />
+              <div className="proof-label">Code được hỗ trợ bởi Claude</div>
+            </div>
+            <h3>Claude AI</h3>
+            <p>Sử dụng Claude để hỗ trợ triển khai code, tối ưu hóa cấu trúc dự án và phát triển các tính năng thông minh.</p>
+            <div className="tech-features">
+              <span>✅ Tối ưu code</span>
+              <span>✅ Gợi ý giải pháp</span>
+              <span>✅ Debug hiệu quả</span>
+            </div>
+          </div>
+          {/* <div className="tech-card">
+            <div className="tech-proof">
+              <img src="/screenshots/ai-images.png" alt="AI Image Generation" />
+              <div className="proof-label">Hình ảnh AI tự động</div>
+            </div>
+            <h3>Hình Ảnh Thông Minh</h3>
+            <p>Tích hợp API tìm kiếm và tạo ảnh tự động để cung cấp nội dung hình ảnh trực quan, sinh động cho bài học.</p>
+            <div className="tech-features">
+              <span>✅ Tìm ảnh tự động</span>
+              <span>✅ Tối ưu nội dung</span>
+              <span>✅ API hình ảnh</span>
+            </div>
+          </div> */}
+        </div>
+      </section>
+
       <section className="team-section">
         <h2>Thành Viên Nhóm</h2>
         <div className="team-grid">
           {teamMembers.map((member, index) => (
             <div key={index} className="team-card">
               <h3 className="member-name">{member.name}</h3>
+              <p className="member-role">{member.role}</p>
             </div>
           ))}
         </div>

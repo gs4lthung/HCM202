@@ -47,6 +47,7 @@ export interface VideoContent {
   title: string;
   description: string;
   embedUrl: string;
+  thumbnailUrl?: string;
   duration?: string;
   category: 'documentary' | 'lecture' | 'historical' | 'educational';
 }
@@ -70,4 +71,5 @@ export interface Quote {
   text: string;
   context: string;
   significance: string;
+  link: string;
 }

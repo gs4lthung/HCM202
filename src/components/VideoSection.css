@@ -102,6 +102,28 @@
   overflow: hidden;
 }
 
+.thumbnail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.thumbnail-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  z-index: 1;
+}
+
+.thumbnail-fallback.hidden {
+  display: none;
+}
+
 .video-thumbnail::before {
   content: '';
   position: absolute;
@@ -111,6 +133,7 @@
   bottom: 0;
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
   opacity: 0.3;
+  z-index: 0;
 }
 
 .play-overlay {
