@@ -5,15 +5,15 @@ const About: React.FC = () => {
   const teamMembers = [
     {
       name: "Lâm Tiên Hưng",
-      role: "Xây dựng Web + Chatbot",
+      role: "Xây dựng Web + Tính năng AI",
     },
     {
       name: "Nguyễn Anh Tuấn",
-      role: "Xây dựng Web + Chatbot",
+      role: "Xây dựng Web + Tính năng AI",
     },
     {
       name: "Phạm Văn Quốc Vương ",
-      role: "Xây dựng Web + Chatbot",
+      role: "Xây dựng Web + Tính năng AI",
     },
     {
       name: "Nguyễn Thanh Phong",
