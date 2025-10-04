@@ -60,7 +60,7 @@ const About: React.FC = () => {
                 src="/images/image.png "
                 alt="Gemini Chatbot Implementation"
               />
-              <div className="proof-label">Chatbot AI đang hoạt động</div>
+              <div className="proof-label">Chatbot + Quiz AI</div>
             </div>
             <h3>Google Gemini</h3>
             <p>
