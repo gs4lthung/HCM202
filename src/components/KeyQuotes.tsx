@@ -1,5 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Quote as QuoteIcon, ExternalLink, Copy, Search, X } from "lucide-react";
+import React, { useState } from "react";
+import {
+  Quote as QuoteIcon,
+  ExternalLink,
+  Copy,
+  Search,
+  X,
+} from "lucide-react";
 import type { Quote } from "../types";
 import "./KeyQuotes.css";
 
@@ -22,7 +28,11 @@ const KeyQuotes: React.FC<KeyQuotesProps> = ({ quotes }) => {
     }
   };
 
-  const handleCopyQuote = async (quote: Quote, index: number, e: React.MouseEvent) => {
+  const handleCopyQuote = async (
+    quote: Quote,
+    index: number,
+    e: React.MouseEvent
+  ) => {
     e.stopPropagation();
     const quoteText = `"${quote.text}" - ${quote.significance}`;
 
@@ -35,10 +45,10 @@ const KeyQuotes: React.FC<KeyQuotesProps> = ({ quotes }) => {
     }
   };
 
-  
-  const filteredQuotes = quotes.filter(quote =>
-    quote.text.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    quote.significance.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredQuotes = quotes.filter(
+    (quote) =>
+      quote.text.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      quote.significance.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const displayQuotes = searchTerm ? filteredQuotes : quotes;
@@ -57,7 +67,7 @@ const KeyQuotes: React.FC<KeyQuotesProps> = ({ quotes }) => {
 
       <div className="section-actions">
         <button
-          className={`search-toggle ${showSearch ? 'active' : ''}`}
+          className={`search-toggle ${showSearch ? "active" : ""}`}
           onClick={() => setShowSearch(!showSearch)}
           aria-label="Toggle search"
         >
@@ -81,7 +91,7 @@ const KeyQuotes: React.FC<KeyQuotesProps> = ({ quotes }) => {
             {searchTerm && (
               <button
                 className="clear-search"
-                onClick={() => setSearchTerm('')}
+                onClick={() => setSearchTerm("")}
                 aria-label="Clear search"
               >
                 <X size={16} />
@@ -97,7 +107,7 @@ const KeyQuotes: React.FC<KeyQuotesProps> = ({ quotes }) => {
       )}
 
       <div className="quotes-grid">
-        {displayQuotes.map((quote, index) => {
+        {displayQuotes.map((quote) => {
           const originalIndex = quotes.indexOf(quote);
           const isCopied = copiedQuote === originalIndex;
 
@@ -108,9 +118,11 @@ const KeyQuotes: React.FC<KeyQuotesProps> = ({ quotes }) => {
               onClick={() => handleQuoteClick(quote)}
               role="button"
               tabIndex={0}
-              aria-label={`Trích dẫn #${originalIndex + 1}: ${quote.text.substring(0, 50)}...`}
+              aria-label={`Trích dẫn #${
+                originalIndex + 1
+              }: ${quote.text.substring(0, 50)}...`}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
+                if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
                   handleQuoteClick(quote);
                 }
