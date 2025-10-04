@@ -28,7 +28,7 @@ const About: React.FC = () => {
       role: "Chuẩn bị nội dung",
     },
     {
-      name: "Phước Sang",
+      name: "Trương Phước Sang",
       role: "Chuẩn bị nội dung",
     },
   ];
@@ -37,7 +37,7 @@ const About: React.FC = () => {
     <div className="about-container">
       <div className="about-header">
         <h1>Về Chúng Tôi</h1>
-        <p className="about-subtitle">Dự án học tập về tư tưởng Hồ Chí Minh</p>
+        {/* <p className="about-subtitle">Dự án học tập về tư tưởng Hồ Chí Minh</p> */}
       </div>
 
       <section className="project-intro">
@@ -56,28 +56,39 @@ const About: React.FC = () => {
         <div className="tech-grid">
           <div className="tech-card">
             <div className="tech-proof">
-              <img src="/images/image.png " alt="Gemini Chatbot Implementation" />
+              <img
+                src="/images/image.png "
+                alt="Gemini Chatbot Implementation"
+              />
               <div className="proof-label">Chatbot AI đang hoạt động</div>
             </div>
             <h3>Google Gemini</h3>
-            <p>Tích hợp API Gemini để xây dựng chatbot thông minh, giúp trả lời câu hỏi và tạo bộ câu hỏi trắc nghiệm tự động về tư tưởng Hồ Chí Minh.</p>
+            <p>
+              Tích hợp API Gemini để xây dựng chatbot thông minh, giúp trả lời
+              câu hỏi và tạo bộ câu hỏi trắc nghiệm tự động về tư tưởng Hồ Chí
+              Minh.
+            </p>
             <div className="tech-features">
               <span>✅ Chatbot thông minh</span>
               <span>✅ Tạo câu hỏi tự động</span>
-              <span>✅ API tích hợp</span>
             </div>
           </div>
           <div className="tech-card">
             <div className="tech-proof">
-              <img src="/images/claude-code.png" alt="Claude Code Implementation" />
+              <img
+                src="/images/claude-code.png"
+                alt="Claude Code Implementation"
+              />
               <div className="proof-label">Code được hỗ trợ bởi Claude</div>
             </div>
             <h3>Claude AI</h3>
-            <p>Sử dụng Claude để hỗ trợ triển khai code, tối ưu hóa cấu trúc dự án và phát triển các tính năng thông minh.</p>
+            <p>
+              Sử dụng Claude để hỗ trợ triển khai code, tối ưu hóa cấu trúc dự
+              án và phát triển các tính năng thông minh.
+            </p>
             <div className="tech-features">
               <span>✅ Tối ưu code</span>
               <span>✅ Gợi ý giải pháp</span>
-              <span>✅ Debug hiệu quả</span>
             </div>
           </div>
           {/* <div className="tech-card">

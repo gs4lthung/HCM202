@@ -1,4 +1,4 @@
-/* KeyQuotes.css - Enhanced Modern Design */
+/* KeyQuotes.css - Enhanced Modern Design with Interactive Features */
 .quotes-section {
   margin: 3rem 0;
   position: relative;
@@ -36,6 +36,149 @@
   font-size: 0.875rem;
   font-weight: 600;
   box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quote-count:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+
+.section-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.search-toggle, .favorites-toggle {
+  background: linear-gradient(135deg, #f8fafc, #ffffff);
+  border: 2px solid #e2e8f0;
+  color: #475569;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.search-toggle:hover, .favorites-toggle:hover {
+  background: linear-gradient(135deg, #f1f5f9, #ffffff);
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.search-toggle.active {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  border-color: #3b82f6;
+}
+
+.search-container {
+  margin-bottom: 2rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-input-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  z-index: 2;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  background: linear-gradient(135deg, #f8fafc, #ffffff);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.clear-search {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f3f4f6;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #6b7280;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear-search:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.search-results {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6b7280;
+}
+
+.no-results-icon {
+  color: #d1d5db;
+  margin-bottom: 1rem;
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.no-results p {
+  font-size: 1rem;
+  color: #6b7280;
 }
 
 .quotes-grid {
@@ -160,7 +303,7 @@
 
 .quote-header {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
 }
@@ -173,6 +316,68 @@
   padding: 0.5rem 1rem;
   border-radius: 2rem;
   box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.quote-card:hover .quote-number {
+  transform: translateY(-2px);
+}
+
+.quote-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.copy-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: #d1d5db;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.copy-feedback {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  animation: copyFeedback 2s ease-in-out;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+@keyframes copyFeedback {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  10%, 90% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
 }
 
 .quote-link-indicator {
@@ -184,19 +389,13 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  opacity: 0;
-  transform: translateX(10px);
 }
 
-.quote-card.clickable:hover .quote-link-indicator {
-  opacity: 1;
-  transform: translateX(0);
-}
 
 .quote-hover-hint {
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  top: 1rem;
+  left: 1rem;
   background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   color: white;
   padding: 0.5rem 0.75rem;
@@ -207,9 +406,10 @@
   align-items: center;
   gap: 0.375rem;
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(-10px);
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  z-index: 5;
 }
 
 .quote-card.clickable:hover .quote-hover-hint {
@@ -309,7 +509,15 @@
     font-size: 1.5rem;
   }
 
+  .section-actions {
+    gap: 0.75rem;
   }
+
+  .search-toggle, .favorites-toggle {
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+  }
+}
 
 @media (max-width: 768px) {
   .quotes-section {
@@ -324,6 +532,22 @@
 
   .section-title {
     font-size: 1.3rem;
+  }
+
+  .section-stats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .section-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .search-toggle, .favorites-toggle {
+    width: 100%;
+    justify-content: center;
   }
 
   .quotes-grid {
@@ -349,6 +573,14 @@
     margin-bottom: 1rem;
   }
 
+  .quote-actions {
+    gap: 0.375rem;
+  }
+
+  .copy-btn {
+    padding: 0.375rem;
+  }
+
   .context-info {
     padding: 0.75rem;
     font-size: 0.8rem;
@@ -358,8 +590,7 @@
     padding: 1rem;
     font-size: 0.9rem;
   }
-
-  }
+}
 
 @media (max-width: 480px) {
   .quote-card {
@@ -378,4 +609,77 @@
     font-size: 0.75rem;
     padding: 0.375rem 0.625rem;
   }
+
+  .quote-actions {
+    gap: 0.25rem;
+  }
+
+  .copy-btn {
+    padding: 0.3125rem;
+  }
+
+  .copy-feedback {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .search-input {
+    padding: 0.875rem 0.875rem 0.875rem 2.5rem;
+    font-size: 0.875rem;
+  }
+
+  .search-icon {
+    left: 0.75rem;
+  }
+
+  .clear-search {
+    right: 0.75rem;
+    padding: 0.375rem;
+  }
+}
+
+/* Focus styles for better accessibility */
+.quote-card:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.copy-btn:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+}
+
+.search-input:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for better UX */
+.quote-card * {
+  transition: inherit;
+}
+
+/* Loading state */
+.quotes-grid.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.quotes-grid.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e5e7eb;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
