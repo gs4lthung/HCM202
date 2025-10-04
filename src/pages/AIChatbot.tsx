@@ -220,7 +220,16 @@ Hãy trả lời một cách thấu đáo và giáo dục!`;
               {message.role === 'assistant' ? <Bot size={16} /> : <User size={16} />}
             </div>
             <div className="message-content">
-              <div className="message-text">{message.content}</div>
+              <div
+                className="message-text"
+                dangerouslySetInnerHTML={{
+                  __html: message.content
+                    .replace(/\n\n/g, '</p><p>')
+                    .replace(/\n/g, '<br>')
+                    .replace(/^/, '<p>')
+                    .replace(/$/, '</p>')
+                }}
+              />
               <div className="message-time">{formatTime(message.timestamp)}</div>
             </div>
           </div>

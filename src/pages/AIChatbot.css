@@ -186,7 +186,18 @@
 
 .message-text {
   line-height: 1.6;
-  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-size: 0.9rem;
+}
+
+.message-text p {
+  margin: 0 0 1em 0;
+  text-align: justify;
+}
+
+.message-text p:last-child {
+  margin-bottom: 0;
 }
 
 .message-time {
