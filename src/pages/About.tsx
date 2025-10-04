@@ -64,9 +64,9 @@ const About: React.FC = () => {
             </div>
             <h3>Google Gemini</h3>
             <p>
-              Tích hợp API Gemini để xây dựng chatbot thông minh, giúp trả lời
-              câu hỏi và tạo bộ câu hỏi trắc nghiệm tự động về tư tưởng Hồ Chí
-              Minh.
+              Tích hợp API Gemini để xây dựng chatbot thông minh học từ những
+              kiến thức có sẵn và giúp trả lời câu hỏi và tạo bộ câu hỏi trắc
+              nghiệm tự động về tư tưởng Hồ Chí Minh.
             </p>
             <div className="tech-features">
               <span>✅ Chatbot thông minh</span>
@@ -83,8 +83,8 @@ const About: React.FC = () => {
             </div>
             <h3>Claude AI</h3>
             <p>
-              Sử dụng Claude để hỗ trợ triển khai code, tối ưu hóa cấu trúc dự
-              án và phát triển các tính năng thông minh.
+              Sử dụng Claude để hỗ trợ triển khai code, tối ưu cấu trúc dự án và
+              phát triển các tính năng.
             </p>
             <div className="tech-features">
               <span>✅ Tối ưu code</span>
