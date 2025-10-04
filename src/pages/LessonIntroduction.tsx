@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { lessonData } from "../data/lessonData";
 import VideoSection from "../components/VideoSection";
-import Timeline from "../components/Timeline";
+// import Timeline from "../components/Timeline";
 import KeyQuotes from "../components/KeyQuotes";
 import "./LessonIntroduction.css";
 
@@ -204,9 +204,9 @@ const LessonIntroduction: React.FC = () => {
       )}
 
       {/* Timeline Section */}
-      {lessonData.timeline && lessonData.timeline.length > 0 && (
+      {/* {lessonData.timeline && lessonData.timeline.length > 0 && (
         <Timeline timeline={lessonData.timeline} />
-      )}
+      )} */}
 
       {/* Key Quotes Section */}
       {lessonData.keyQuotes && lessonData.keyQuotes.length > 0 && (
