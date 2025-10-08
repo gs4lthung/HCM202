@@ -128,12 +128,16 @@ export const lessonData: LessonContent = {
       significance:
         "Khẳng định vai trò cơ bản của nhân dân trong việc xây dựng và bảo vệ đất nước",
       link: "https://www.truongchinhtrikontum.org.vn/quan-diem-nuoc-lay-dan-lam-goc-trong-tu-tuong-ho-chi-minh-va-su-van-dung-cua-dang-ta",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 7, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 245",
     },
     {
       text: "Nước ta là nước dân chủ, địa vị cao nhất là dân, vì dân là chủ.",
       context: "Nói chuyện với cán bộ Bộ Nội vụ (1948)",
       significance: "Làm rõ bản chất dân chủ của nhà nước Việt Nam",
       link: "https://thanhnien.vn/dan-la-chu-va-dan-lam-chu-trong-tu-tuong-ho-chi-minh-1851459851.htm",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 6, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 387",
     },
     {
       text: "Các công việc của Chính phủ làm phải nhằm vào một mục đích duy nhất là mưu tự do hạnh phúc cho mọi người.",
@@ -141,6 +145,8 @@ export const lessonData: LessonContent = {
       significance:
         "Xác định mục tiêu cao nhất của nhà nước là phục vụ nhân dân",
       link: "https://tcnn.vn/news/detail/43282/Triet-ly-xay-dung-Chinh-phu-kien-tao-trong-tu-tuong-Ho-Chi-Minh.html",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 4, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 156",
     },
     {
       text: "Bao nhiêu lợi ích đều vì dân. Bao nhiêu quyền hạn đều của dân.",
@@ -148,6 +154,8 @@ export const lessonData: LessonContent = {
       significance:
         "Khẳng định quyền làm chủ và quyền lợi tối cao của nhân dân",
       link: "https://www.tapchicongsan.org.vn/web/guest/nghien-cu/-/2018/821308/tac-pham-%E2%80%9Cdan-van%E2%80%9D-cua-chu-tich-ho-chi-minh-va-y-nghia-doi-voi-cong-tac-dan-van-cua-dang-hien-nay.aspx",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 7, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 423",
     },
     {
       text: "Việc gì lợi cho dân, ta phải hết sức làm. Việc gì hại đến dân, ta phải hết sức tránh.",
@@ -155,12 +163,16 @@ export const lessonData: LessonContent = {
       significance:
         "Đặt lợi ích của nhân dân làm tiêu chí tối cao trong hoạt động của nhà nước",
       link: "https://nhandan.vn/viec-gi-loi-cho-dan-ta-phai-het-suc-lam-post615409.html",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 7, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 424",
     },
     {
       text: "Cán bộ là đầy tớ của dân, dân là chủ.",
       context: "Phát biểu trong buổi tiếp xúc cử tri Hà Nội (1956)",
       significance: "Làm rõ mối quan hệ giữa nhà nước và nhân dân",
       link: "https://nghean.dcs.vn/vi-vn/tin/quan-diem-cua-chu-tich-ho-chi-minh-ve-dan-chu-va-thuc-hanh-dan-chu--tang-cuong-phap-che--dam-bao-ky-cuong-xa-hoi/73410-894751-415577",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 8, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 512",
     },
     {
       text: "Tôi chỉ có một ham muốn, ham muốn tột bậc, là làm sao cho nước ta được hoàn toàn độc lập, dân ta được hoàn toàn tự do, ai cũng có cơm ăn, áo mặc, ai cũng được học hành.",
@@ -168,6 +180,8 @@ export const lessonData: LessonContent = {
       significance:
         "Thể hiện mục tiêu toàn diện của cách mạng về độc lập, tự do và hạnh phúc cho nhân dân",
       link: "https://nhandan.vn/ham-muon-tot-bac-cua-bac-ho-post421662.html",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 4, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 89",
     },
     {
       text: "Dễ trăm lần không dân cũng chịu, khó vạn lần dân liệu cũng xong.",
@@ -175,6 +189,40 @@ export const lessonData: LessonContent = {
       significance:
         "Khẳng định sức mạnh và vai trò quyết định của nhân dân trong mọi công việc",
       link: "https://baotuyenquang.com.vn/Ke-chuyen-ve-bac/201801/de-tram-lan-khong-dan-cung-chiu-kho-van-lan-dan-lieu-cung-xong-718696/",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 9, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 178",
+    },
+    {
+      text: "Tất cả quyền lực đều thuộc về nhân dân.",
+      context: "Lời kêu gọi toàn quốc kháng chiến (19/12/1946)",
+      significance: "Khẳng định nguyên tắc cơ bản của nhà nước dân chủ",
+      link: "https://tapa.vn/c/n/Toan-quoc-khang-chien--Loi-keu-goi-cua-Chu-tich-Ho-Chi-Minh-19122046--353886",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 4, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 412",
+    },
+    {
+      text: "Nhà nước của dân, do dân và vì dân.",
+      context: "Phát biểu tại Hội nghị Trung ương Đảng (11/1954)",
+      significance: "Tổng kết tư tưởng cốt lõi về nhà nước kiểu mới",
+      link: "https://dangcongsan.vn/bao-ve-nen-tang-tu-tuong-cua-dang/tu-tuong-ho-chi-minh-ve-nha-nuoc-cua-dan-do-dan-vi-dan-527965.html",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 8, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 267",
+    },
+    {
+      text: "Chính quyền là của dân, do dân và vì dân, đó là một nhà nước dân chủ.",
+      context: "Bài nói về dân chủ và tự do (1945)",
+      significance: "Làm rõ bản chất dân chủ của chế độ mới",
+      link: "https://vanbanphapluat.co/bai-noi-ve-dan-chu-va-tu-do-chu-tich-ho-chi-minh/",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 3, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 89",
+    },
+    {
+      text: "Phải lấy dân làm gốc, mọi việc phải dựa vào dân và vì dân.",
+      context: "Chỉ thị về công tác dân vận (1947)",
+      significance: "Xác định phương pháp cơ bản trong xây dựng nhà nước",
+      link: "https://www.moitruong.net.vn/Phai-lay-dan-lam-goc-moi-viec-phai-dua-vao-dan-va-vi-dan-a273842.html",
+      citation:
+        "Hồ Chí Minh, Toàn tập, tập 5, Nxb Chính trị quốc gia, Hà Nội, 2000, tr. 156",
     },
   ],
   interactiveElements: [
@@ -235,6 +283,7 @@ export const lessonData: LessonContent = {
             "+ Là thành quả đấu tranh của toàn dân tộc.",
             "+ Không thuộc riêng giai cấp hay tầng lớp nào, mà là của nhân dân.",
           ],
+          audio: "/audios/1.mp3",
         },
         {
           title: "Nhà nước của nhân dân",
@@ -249,6 +298,7 @@ export const lessonData: LessonContent = {
             "+ Giám sát, bãi miễn cán bộ không xứng đáng",
             "+ Thực thi quyền lực qua pháp luật dân chủ.",
           ],
+          audio: "/audios/2.mp3",
         },
         {
           title: "Nhà nước do nhân dân",
@@ -257,6 +307,7 @@ export const lessonData: LessonContent = {
             "Nhân dân vừa có quyền làm chủ, vừa có nghĩa vụ công dân.",
             "Nhân dân tham gia quản lý, xây dựng và bảo vệ Nhà nước; muốn làm chủ tốt phải có năng lực làm chủ.",
           ],
+          audio: "/audios/3.mp3",
         },
         {
           title: "Nhà nước vì nhân dân",
@@ -265,6 +316,7 @@ export const lessonData: LessonContent = {
             "Mục tiêu cao nhất: phục vụ lợi ích và hạnh phúc của nhân dân, “việc gì lợi cho dân thì làm, việc gì hại cho dân thì tránh”",
             "Nhà nước vì dân phải được lòng dân: yêu dân, đặt lợi ích của dân lên trên hết, chí công vô tư.",
           ],
+          audio: "/audios/4.mp3",
         },
       ],
     },
@@ -279,6 +331,7 @@ export const lessonData: LessonContent = {
             "+ Tổ chức và hoạt động dựa trên Hiến pháp và pháp luật",
             "+ Quyền lực nhà nước được phân công, phối hợp và kiểm soát theo luật định",
           ],
+          audio: "/audios/10.mp3",
         },
         {
           title: "Nhà nước thượng tôn pháp luật",
@@ -287,6 +340,7 @@ export const lessonData: LessonContent = {
             '-> Hồ Chí Minh tuyên bố: "Pháp luật Việt Nam tuy khoan hồng với những người biết cải tà quy chính, nhưng sẽ thẳng tay trừng trị những tên Việt gian đầu sỏ đã bán nước buôn dân"',
             "- Điều này đòi hỏi pháp luật phải công bằng, minh bạch, nghiêm minh.",
           ],
+          audio: "/audios/9.mp3",
         },
         {
           title: "Pháp quyền nhân nghĩa",
@@ -295,6 +349,7 @@ export const lessonData: LessonContent = {
             "Pháp luật vừa nghiêm khắc vừa nhân đạo, bảo vệ quyền lợi chính đáng của nhân dân.",
             "Kết hợp kỷ cương pháp luật với tình thương, đạo lý; pháp luật vì con người.",
           ],
+          audio: "/audios/5.mp3",
         },
       ],
     },
@@ -308,6 +363,7 @@ export const lessonData: LessonContent = {
             "- Quyền lực phải được phân công, phối hợp, kiểm soát để tránh lạm quyền",
             "- Cơ chế giám sát của nhân dân và các tổ chức chính trị – xã hội",
           ],
+          audio: "/audios/8.mp3",
         },
         {
           title: "Phòng chống tiêu cực trong Nhà nước",
@@ -320,6 +376,7 @@ export const lessonData: LessonContent = {
             "Giáo dục đạo đức, nâng cao năng lực và nêu gương của cán bộ.",
             "Huy động sức mạnh yêu nước để chống tiêu cực trong xã hội và bộ máy nhà nước.",
           ],
+          audio: "/audios/6.mp3",
         },
       ],
     },

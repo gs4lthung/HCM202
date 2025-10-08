@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { lessonData } from "../data/lessonData";
 import VideoSection from "../components/VideoSection";
 // import Timeline from "../components/Timeline";
 import KeyQuotes from "../components/KeyQuotes";
+import { Play, Pause } from "lucide-react";
 import "./LessonIntroduction.css";
 
 // Helper function to recursively render content
@@ -33,6 +34,14 @@ const LessonIntroduction: React.FC = () => {
     itemIndex: number;
   } | null>(null);
 
+  const [currentAudio, setCurrentAudio] = useState<{
+    cardIndex: number;
+    itemIndex: number;
+  } | null>(null);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
   const toggleItem = (cardIndex: number, itemIndex: number) => {
     if (
       openItem?.cardIndex === cardIndex &&
@@ -42,6 +51,41 @@ const LessonIntroduction: React.FC = () => {
     } else {
       setOpenItem({ cardIndex, itemIndex });
     }
+  };
+
+  const toggleAudio = (cardIndex: number, itemIndex: number, audioPath: string) => {
+    // Stop current audio if playing a different item
+    if (currentAudio && (currentAudio.cardIndex !== cardIndex || currentAudio.itemIndex !== itemIndex)) {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    }
+
+    // If clicking on the same audio that's playing, pause it
+    if (currentAudio?.cardIndex === cardIndex && currentAudio?.itemIndex === itemIndex && isPlaying) {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+      return;
+    }
+
+    // Create new audio and play
+    const newAudio = new Audio(audioPath);
+    newAudio.addEventListener('ended', () => {
+      setIsPlaying(false);
+      setCurrentAudio(null);
+    });
+
+    audioRef.current = newAudio;
+    setCurrentAudio({ cardIndex, itemIndex });
+    setIsPlaying(true);
+    newAudio.play().catch(err => {
+      console.error("Error playing audio:", err);
+      setIsPlaying(false);
+      setCurrentAudio(null);
+    });
   };
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -69,6 +113,16 @@ const LessonIntroduction: React.FC = () => {
       return () => clearInterval(interval);
     }
   }, [isPaused]);
+
+  // Cleanup audio on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
 
   // Keyboard navigation
   useEffect(() => {
@@ -180,7 +234,44 @@ const LessonIntroduction: React.FC = () => {
                       onClick={() => toggleItem(cardIndex, itemIndex)}
                       style={{ cursor: "pointer" }}
                     >
-                      <strong>{item.title}</strong>
+                      <div className="item-header">
+                        <strong>{item.title}</strong>
+                        {item.audio && (
+                          <button
+                            className={`voice-btn ${
+                              currentAudio?.cardIndex === cardIndex &&
+                              currentAudio?.itemIndex === itemIndex &&
+                              isPlaying ? 'playing' : ''
+                            }`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleAudio(cardIndex, itemIndex, item.audio);
+                            }}
+                            aria-label={
+                              currentAudio?.cardIndex === cardIndex &&
+                              currentAudio?.itemIndex === itemIndex &&
+                              isPlaying
+                                ? "Pause audio"
+                                : "Play audio"
+                            }
+                            title={
+                              currentAudio?.cardIndex === cardIndex &&
+                              currentAudio?.itemIndex === itemIndex &&
+                              isPlaying
+                                ? "Pause audio"
+                                : "Play audio"
+                            }
+                          >
+                            {currentAudio?.cardIndex === cardIndex &&
+                             currentAudio?.itemIndex === itemIndex &&
+                             isPlaying ? (
+                              <span style={{ fontSize: '16px' }}>⏸️</span>
+                            ) : (
+                              <span style={{ fontSize: '16px' }}>▶️</span>
+                            )}
+                          </button>
+                        )}
+                      </div>
                       {openItem?.cardIndex === cardIndex &&
                         openItem?.itemIndex === itemIndex && (
                           <div className={`item-content border-${card.color}`}>

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev)",
+      "mcp__ide__getDiagnostics",
+      "Bash(npm ls:*)",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

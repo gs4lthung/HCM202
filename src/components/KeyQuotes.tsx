@@ -170,6 +170,15 @@ const KeyQuotes: React.FC<KeyQuotesProps> = ({ quotes }) => {
                 </div>
                 <p>{quote.significance}</p>
               </div>
+
+              {quote.citation && (
+                <div className="quote-citation">
+                  <div className="citation-header">
+                    <strong>Nguồn:</strong>
+                  </div>
+                  <p>{quote.citation}</p>
+                </div>
+              )}
             </div>
           );
         })}

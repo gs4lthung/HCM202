@@ -20,12 +20,15 @@ export interface QuizResult {
 
 export interface ChatMessage {
   id: string;
-  role: 'user' | 'assistant';
+  role: "user" | "assistant";
   content: string;
   timestamp: Date;
 }
-type LessonItem =  
-  | { title: string; content: (string | LessonItem)[] };
+type LessonItem = {
+  title: string;
+  content: (string | LessonItem)[];
+  audio?: string;
+};
 
 export interface LessonContent {
   title: string;
@@ -49,12 +52,12 @@ export interface VideoContent {
   embedUrl: string;
   thumbnailUrl?: string;
   duration?: string;
-  category: 'documentary' | 'lecture' | 'historical' | 'educational';
+  category: "documentary" | "lecture" | "historical" | "educational";
 }
 
 export interface InteractiveElement {
   id: string;
-  type: 'poll' | 'reflection' | 'discussion' | 'mindmap';
+  type: "poll" | "reflection" | "discussion" | "mindmap";
   title: string;
   content: string;
   options?: string[];
@@ -72,4 +75,5 @@ export interface Quote {
   context: string;
   significance: string;
   link: string;
+  citation?: string;
 }
