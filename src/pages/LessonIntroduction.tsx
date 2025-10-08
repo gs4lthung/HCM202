@@ -3,7 +3,6 @@ import { lessonData } from "../data/lessonData";
 import VideoSection from "../components/VideoSection";
 // import Timeline from "../components/Timeline";
 import KeyQuotes from "../components/KeyQuotes";
-import { Play, Pause } from "lucide-react";
 import "./LessonIntroduction.css";
 
 // Helper function to recursively render content
@@ -53,9 +52,17 @@ const LessonIntroduction: React.FC = () => {
     }
   };
 
-  const toggleAudio = (cardIndex: number, itemIndex: number, audioPath: string) => {
+  const toggleAudio = (
+    cardIndex: number,
+    itemIndex: number,
+    audioPath: string
+  ) => {
     // Stop current audio if playing a different item
-    if (currentAudio && (currentAudio.cardIndex !== cardIndex || currentAudio.itemIndex !== itemIndex)) {
+    if (
+      currentAudio &&
+      (currentAudio.cardIndex !== cardIndex ||
+        currentAudio.itemIndex !== itemIndex)
+    ) {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -63,7 +70,11 @@ const LessonIntroduction: React.FC = () => {
     }
 
     // If clicking on the same audio that's playing, pause it
-    if (currentAudio?.cardIndex === cardIndex && currentAudio?.itemIndex === itemIndex && isPlaying) {
+    if (
+      currentAudio?.cardIndex === cardIndex &&
+      currentAudio?.itemIndex === itemIndex &&
+      isPlaying
+    ) {
       if (audioRef.current) {
         audioRef.current.pause();
         setIsPlaying(false);
@@ -73,7 +84,7 @@ const LessonIntroduction: React.FC = () => {
 
     // Create new audio and play
     const newAudio = new Audio(audioPath);
-    newAudio.addEventListener('ended', () => {
+    newAudio.addEventListener("ended", () => {
       setIsPlaying(false);
       setCurrentAudio(null);
     });
@@ -81,7 +92,7 @@ const LessonIntroduction: React.FC = () => {
     audioRef.current = newAudio;
     setCurrentAudio({ cardIndex, itemIndex });
     setIsPlaying(true);
-    newAudio.play().catch(err => {
+    newAudio.play().catch((err) => {
       console.error("Error playing audio:", err);
       setIsPlaying(false);
       setCurrentAudio(null);
@@ -241,11 +252,15 @@ const LessonIntroduction: React.FC = () => {
                             className={`voice-btn ${
                               currentAudio?.cardIndex === cardIndex &&
                               currentAudio?.itemIndex === itemIndex &&
-                              isPlaying ? 'playing' : ''
+                              isPlaying
+                                ? "playing"
+                                : ""
                             }`}
                             onClick={(e) => {
                               e.stopPropagation();
-                              toggleAudio(cardIndex, itemIndex, item.audio);
+                              if (item.audio) {
+                                toggleAudio(cardIndex, itemIndex, item.audio);
+                              }
                             }}
                             aria-label={
                               currentAudio?.cardIndex === cardIndex &&
@@ -263,11 +278,11 @@ const LessonIntroduction: React.FC = () => {
                             }
                           >
                             {currentAudio?.cardIndex === cardIndex &&
-                             currentAudio?.itemIndex === itemIndex &&
-                             isPlaying ? (
-                              <span style={{ fontSize: '16px' }}>⏸️</span>
+                            currentAudio?.itemIndex === itemIndex &&
+                            isPlaying ? (
+                              <span style={{ fontSize: "16px" }}>⏸️</span>
                             ) : (
-                              <span style={{ fontSize: '16px' }}>▶️</span>
+                              <span style={{ fontSize: "16px" }}>▶️</span>
                             )}
                           </button>
                         )}
